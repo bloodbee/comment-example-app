@@ -9,12 +9,13 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
-async function initDb() {
-  await mongoose.connect('mongodb://localhost:27017/test');
-  console.log('Connexion done on mongodb database : mongodb://localhost:27017/commentary')
-}
-
-initDb().catch(err => console.log(err));
+mongoose
+  .connect(
+      `mongodb://localhost:27017/commentary`,
+      {useNewUrlParser: true, useUnifiedTopology: true}
+  )
+  .then(() => console.log('MongoDB connected on mongodb://localhost:27017/commentary'))
+  .catch(err => console.log(err));
 
 app.use(logger('dev'));
 app.use(express.json());
