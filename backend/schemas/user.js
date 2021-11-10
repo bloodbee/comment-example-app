@@ -17,4 +17,9 @@ let userSchema = new Schema({
   timestamps: true
 });
 
+// byEmail query builder
+userSchema.query.byEmail = function(email) {
+  return this.where({ email: new RegExp(email, 'i') })
+};
+
 module.exports = userSchema
