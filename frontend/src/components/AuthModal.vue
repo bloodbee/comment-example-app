@@ -48,12 +48,12 @@
 
                             <div class="col-span-6">
                               <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
-                              <input v-model="loginEmail" type="email" name="login-email" id="login-email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <input autocomplete="login-email" v-model="loginEmail" type="email" name="login-email" id="login-email" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
                               <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
-                              <input v-model="loginPassword" type="password" name="login-password" id="login-password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <input autocomplete="login-password"  v-model="loginPassword" type="password" name="login-password" id="login-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                           </div>
@@ -61,7 +61,7 @@
                         <p v-if="loginError" class="px-6 pb-5 text-base text-red-500">{{ loginError }}</p>
                         <p v-if="loginSuccess" class="px-6 pb-5 text-base text-green-500">{{ loginSuccess }}</p>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
                             Signin
                           </button>
                         </div>
@@ -79,17 +79,17 @@
 
                             <div class="col-span-6">
                               <label for="register-email" class="block text-sm font-medium text-gray-700">Email</label>
-                              <input v-model="registerEmail" type="email" name="register-email" id="register-email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <input autocomplete="register-email"  v-model="registerEmail" type="email" name="register-email" id="register-email" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
                               <label for="register-password" class="block text-sm font-medium text-gray-700">Password</label>
-                              <input v-model="registerPassword" type="password" name="register-password" id="register-password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <input autocomplete="register-password"  v-model="registerPassword" type="password" name="register-password" id="register-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
                               <label for="register-confirm-password" class="block text-sm font-medium text-gray-700">Password confirmation</label>
-                              <input v-model="registerConfirmPassword" type="password" name="register-confirm-password" id="register-confirm-password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <input autocomplete="register-confirm-password"  v-model="registerConfirmPassword" type="password" name="register-confirm-password" id="register-confirm-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                           </div>
@@ -97,7 +97,7 @@
                         <p v-if="registerError" class="px-6 pb-5 text-base text-red-500">{{ registerError }}</p>
                         <p v-if="registerSuccess" class="px-6 pb-5 text-base text-green-500">{{ registerSuccess }}</p>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
                             Signup
                           </button>
                         </div>
@@ -117,6 +117,8 @@
 
 <script>
 import { ref } from "vue";
+import { useStore } from 'vuex';
+
 import {
   TransitionRoot,
   TransitionChild,
@@ -135,7 +137,7 @@ export default {
     DialogOverlay,
     DialogTitle,
   },
-  name: 'AuthModal',
+  name: 'AuthModalComponent',
   props: ['modalStatus'],
   emits: ['closeModal'],
   setup(props, { emit }) {
@@ -153,6 +155,8 @@ export default {
     let registerConfirmPassword = ref(null)
     let registerError = ref(null)
     let registerSuccess = ref(null)
+
+    const store = useStore()
     
     return {
       isOpen,
@@ -187,8 +191,9 @@ export default {
               loginError.value = data.err
             } else {
               loginSuccess.value = "Signin succesfully."
-              /** @TODO set user in store */
-              
+              // set user in store
+              store.commit('setUser', response.data.user)
+
               // close modal
               setTimeout(() => {
                 emit('closeModal');

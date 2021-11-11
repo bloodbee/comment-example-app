@@ -10,8 +10,7 @@ let userSchema = new Schema({
     type: String,
     required: true
   },
-  role: { type: String, default: 'basic' },
-  comments: [{ type: Schema.Types.ObjectId, ref: 'comment' }],
+  role: { type: String, default: 'basic' }
 }, {
   collection: 'users',
   timestamps: true

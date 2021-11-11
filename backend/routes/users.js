@@ -72,8 +72,7 @@ router.post('/', function(req, res, next) {
         User.create({
           email: email,
           hashedPassword: await bcrypt.hash(password, saltRounds),
-          role: 'basic',
-          comments: []
+          role: 'basic'
         }, (err, user) => {
           if (err) res.json({ err: err })
           else {
