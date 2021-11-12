@@ -9,7 +9,7 @@
     <div class="px-4 py-3 sm:px-6 flex flex-col sm:flex-row justify-between">
       <p v-if="commentError" class="absolute left-20 px-4 pb-5 text-base text-red-500">{{ commentError }}</p>
       <p v-if="commentSuccess" class="absolute left-20 px-4 pb-5 text-base text-green-500">{{ commentSuccess }}</p>
-      <button @click.prevent="handleCommentForm" type="button" class="sm:absolute sm:right-24 inline-flex bg-transparent justify-center py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 mb-10 px-4">
+      <button @click.prevent="handleCommentForm" type="button" class="sm:absolute sm:right-44 inline-flex bg-transparent justify-center py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 mb-10 px-4">
         Submit
       </button>
     </div>

@@ -70,7 +70,7 @@ import {
   DialogOverlay,
   DialogTitle,
 } from "@headlessui/vue";
-import CommentFormComponent from '@/components/CommentForm.vue'
+import CommentFormComponent from '@/Commentary/components/CommentForm.vue'
 
 export default {
   name: 'CommentComponent',
