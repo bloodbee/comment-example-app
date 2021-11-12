@@ -39,7 +39,6 @@ router.post('/', function(req, res, next) {
       userId,
       orderId,
       georeferenceId,
-      position,
       text: comment
     }, (err, comment) => {
       if (err) res.json({ err: err })

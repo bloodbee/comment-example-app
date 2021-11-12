@@ -23,7 +23,7 @@ const axios = require('axios').default;
 
 export default {
   name: 'CommentFormComponent',
-  props: ['georeferenceId', 'position'],
+  props: ['georeferenceId'],
   emits: ['closeModal'],
   setup(props, { emit }) {
     let comment = ref(null)
@@ -53,7 +53,6 @@ export default {
               comment: comment.value,
               userId: store.state.user._id,
               orderId: orderId.value,
-              position: props.position,
               georeferenceId: props.georeferenceId || null
             },
             headers: { 'Access-Control-Allow-Origin': '*' }

@@ -10,7 +10,7 @@
       <p>{{ comment.text }}</p>
     </div>
     <div class="border-t border-gray-500 grid grid-cols-1 gap-4 pt-4 mt-4" id="comment-form">
-      <CommentFormComponent :position="subcomments ? subcomments.length + 1 : 0" :georeferenceId="comment._id" v-if="user" />
+      <CommentFormComponent :georeferenceId="comment._id" v-if="user" />
     </div>
     <div class="border-t border-gray-500 grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 mt-4" id="comment-subcomments">
       <CommentComponent v-for="subcomment in subcomments" :key="subcomment._id" :comment="subcomment"></CommentComponent>
@@ -47,7 +47,7 @@ export default {
     subcomments() {
       return this.$store.state.comments
       .filter(el => el && el.georeferenceId === this.comment._id)
-      .sort((a, b) => {
+      .sort((a, b) => { // sort by createdAt DESC
         const aDate = new Date(a.createdAt);
         const bDate = new Date(b.createdAt);
 
