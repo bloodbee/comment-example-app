@@ -29,7 +29,7 @@ router.get('/:id', function(req, res, next) {
 
 /* POST create a comment */
 router.post('/', function(req, res, next) {
-  const { comment, userId, orderId, georeferenceId } = req.body
+  const { comment, userId, orderId, georeferenceId, position } = req.body
 
   if (!comment || (!userId && !orderId) || (!userId && !georeferenceId)) {
     res.json({error: 'Bad request formatting, name or symbol is missing.'})
@@ -39,6 +39,7 @@ router.post('/', function(req, res, next) {
       userId,
       orderId,
       georeferenceId,
+      position,
       text: comment
     }, (err, comment) => {
       if (err) res.json({ err: err })

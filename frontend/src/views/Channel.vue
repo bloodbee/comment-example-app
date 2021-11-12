@@ -3,11 +3,14 @@
     <div id="comment-author" class="w-full text-yellow-400 text-left text-lg sm:text-xl">
       Created at {{ new Date(comment.createdAt).toLocaleString() }} by <b>{{ comment.userId }}</b>
     </div>
-    <div id="comment-text" class="mt-10 w-full bg-yellow-50 border-yellow-500 shadow border p-4 rounded-lg text-left text-lg">
+    <div v-if="comment.orderId" id="comment-order" class="w-full text-gray-500 text-left text-md sm:text-lg">
+      Order ID : <b>{{ comment.orderId }}</b>
+    </div>
+    <div id="comment-text" class="mt-4 w-full bg-yellow-50 border-yellow-500 shadow border p-4 rounded-lg text-left text-lg">
       <p>{{ comment.text }}</p>
     </div>
     <div class="border-t border-gray-500 grid grid-cols-1 gap-4 pt-4 mt-4" id="comment-form">
-      <CommentFormComponent :orderId="subcomments ? subcomments.length + 1 : 0" :georeferenceId="comment._id" :dense="true" v-if="user" />
+      <CommentFormComponent :position="subcomments ? subcomments.length + 1 : 0" :georeferenceId="comment._id" v-if="user" />
     </div>
     <div class="border-t border-gray-500 grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 mt-4" id="comment-subcomments">
       <CommentComponent v-for="subcomment in subcomments" :key="subcomment._id" :comment="subcomment"></CommentComponent>
@@ -43,7 +46,7 @@ export default {
      */
     subcomments() {
       return this.$store.state.comments
-      .filter(el => el.georeferenceId === this.comment._id)
+      .filter(el => el && el.georeferenceId === this.comment._id)
       .sort((a, b) => {
         const aDate = new Date(a.createdAt);
         const bDate = new Date(b.createdAt);

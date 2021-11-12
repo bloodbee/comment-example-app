@@ -47,7 +47,7 @@
               class="inline-block w-full max-w-3xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl"
             >
               <div class="flex flex-1 flex-col sm:flex-row justify-around" v-if="user">
-                <CommentFormComponent :georeferenceId="comment._id" :orderId="getSubcomments.length + 1" @close-modal="switchModal()"/>
+                <CommentFormComponent :georeferenceId="comment._id" :position="getSubcomments.length + 1" @close-modal="switchModal()"/>
               </div>
               <div class="flex flex-1 flex-col sm:flex-row justify-around" v-else>
                 <p>You have to be connected if you want to give a comment.</p>
@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     getSubcomments() {
-      return this.$store.state.comments.filter(el => el.georeferenceId === this.comment._id) || []
+      return this.$store.state.comments.filter(el => el && el.georeferenceId === this.comment._id) || []
     },
     user() {
       return this.$store.state.user
@@ -102,9 +102,6 @@ export default {
       this.isOpen = !this.isOpen
     }
   },
-  // mounted() {
-  //   console.log(this.comment.text)
-  // }
 }
 </script>
 
