@@ -62,6 +62,7 @@ router.post('/', function(req, res, next) {
   const pseudonym = req.body.pseudonym;
   const email = req.body.email;
   const password = req.body.password;
+  const role = req.body.role;
 
   if (!email || !password) {
     res.json({error: 'Bad request formatting, name or symbol is missing.'});
@@ -73,7 +74,7 @@ router.post('/', function(req, res, next) {
           pseudonym,
           email,
           hashedPassword: await bcrypt.hash(password, saltRounds),
-          role: 'user'
+          role: role ? role : 'user'
         }, (err, user) => {
           if (err) res.json({ err: err })
           else {

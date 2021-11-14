@@ -21,7 +21,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200" v-if="users.length > 0">
               <tr v-for="user in users" :key="user._id">
-                <td :class="['px-6 py-4 whitespace-nowrap', user._id === admin._id ? 'bg-yellow-50' : '']">
+                <td :class="['px-6 py-4 whitespace-nowrap', user && admin && user._id === admin._id ? 'bg-yellow-50' : '']">
                   <div class="flex items-center">
                     <div>
                       <div class="text-sm text-left font-medium text-gray-900">
@@ -33,12 +33,12 @@
                     </div>
                   </div>
                 </td>
-                <td :class="['px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-left', user._id === admin._id ? 'bg-yellow-50' : '']">
+                <td :class="['px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-left', user && admin && user._id === admin._id ? 'bg-yellow-50' : '']">
                   {{ user.role.replace(/^\w/, (c) => c.toUpperCase()) }}
                 </td>
-                <td :class="['flex flex-1 items-center px-6 py-4 whitespace-nowrap text-sm font-medium text-left', user._id === admin._id ? 'bg-yellow-50' : '']">
+                <td :class="['flex flex-1 items-center px-6 py-4 whitespace-nowrap text-sm font-medium text-left', user && admin && user._id === admin._id ? 'bg-yellow-50' : '']">
                   <a href="#" class="" @click.prevent="openEditUserModal(user)" title="Edit"><PencilIcon class="text-yellow-400 hover:text-yellow-500 h-6 w-6" /></a>
-                  <a v-if="user._id !== admin._id" href="#" @click.prevent="deleteUser(user._id)" class="ml-10" title="Delete"><TrashIcon class="text-red-500 hover:text-red-700 h-6 w-6" /></a>
+                  <a v-if="user && admin && user._id !== admin._id" href="#" @click.prevent="deleteUser(user._id)" class="ml-10" title="Delete"><TrashIcon class="text-red-500 hover:text-red-700 h-6 w-6" /></a>
                 </td>
               </tr>
             </tbody>

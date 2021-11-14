@@ -57,6 +57,19 @@
                             </div>
 
                             <div class="col-span-6">
+                              <label for="edit-role" class="block text-sm font-medium text-gray-700">Role</label>
+                              <Listbox v-model="userRole">
+                                <div class="relative mt-1">
+                                  <ListboxButton class="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">{{ userRole.replace(/^\w/, (c) => c.toUpperCase()) }}</ListboxButton>
+                                  <ListboxOptions class="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                    <ListboxOption class="text-gray-900 cursor-default select-none relative py-2 pl-10 pr-4" value="user">User</ListboxOption>
+                                    <ListboxOption class="text-gray-900 cursor-default select-none relative py-2 pl-10 pr-4" value="admin">Admin</ListboxOption>
+                                  </ListboxOptions>
+                                </div>
+                              </Listbox>
+                            </div>
+
+                            <div class="col-span-6">
                               <label for="add-password" class="block text-sm font-medium text-gray-700">Password</label>
                               <input autocomplete="add-password"  v-model="userPassword" type="password" name="add-password" id="add-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
@@ -99,6 +112,10 @@ import {
   Dialog,
   DialogOverlay,
   DialogTitle,
+  Listbox,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
 } from "@headlessui/vue";
 
 const axios = require('axios').default;
@@ -110,6 +127,10 @@ export default {
     Dialog,
     DialogOverlay,
     DialogTitle,
+    Listbox,
+    ListboxButton,
+    ListboxOptions,
+    ListboxOption,
   },
   name: 'AddUserModalComponent',
   props: ['modalStatus'],
@@ -122,6 +143,7 @@ export default {
     let userEmail = ref(null);
     let userPassword = ref(null);
     let userConfirmPassword = ref(null);
+    let userRole = ref('user');
     let addUserError = ref(null);
     let addUserSuccess = ref(null);
 
@@ -133,6 +155,7 @@ export default {
       userEmail,
       userPassword,
       userConfirmPassword,
+      userRole,
       addUserError,
       addUserSuccess,
       handleAddUser() {
@@ -150,7 +173,8 @@ export default {
               data: {
                 email: userEmail.value,
                 password: userPassword.value,
-                pseudonym: userPseudo.value
+                pseudonym: userPseudo.value,
+                role: userRole.value
               },
               headers: { 'Access-Control-Allow-Origin': '*' }
             }).then(function (response) {
