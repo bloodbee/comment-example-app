@@ -9,6 +9,8 @@ import ChannelView from '@/Commentary/views/Channel.vue';
 // Admin module views
 import DashboardLayout from '@/Admin/layout/Dashboard.vue';
 import UsersView from '@/Admin/views/Users.vue';
+import ChannelsView from '@/Admin/views/Channels.vue';
+import ChannelDetailView from '@/Admin/views/Channel.vue';
 
 const routes = [
   // Commentary Module
@@ -33,15 +35,25 @@ const routes = [
   // Admin module
   {
     path: '/admin',
-    name: 'Dashboard',
+    name: 'AdminDashboard',
     component: DashboardLayout,
     meta: { admin: true },
     children: [
       {
         path: 'users',
-        name: 'Users',
+        name: 'AdminUsers',
         component: UsersView
-      }
+      },
+      {
+        path: 'channels',
+        name: 'AdminChannels',
+        component: ChannelsView
+      },
+      {
+        path: 'channel/:id',
+        name: 'AdminChannel',
+        component: ChannelDetailView
+      },
     ]
   },
 ];

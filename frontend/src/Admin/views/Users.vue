@@ -32,7 +32,7 @@
                     </div>
                   </div>
                 </td>
-                <td :class="['px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-left', , user._id === admin._id ? 'bg-yellow-50' : '']">
+                <td :class="['px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-left', user._id === admin._id ? 'bg-yellow-50' : '']">
                   {{ user.role.replace(/^\w/, (c) => c.toUpperCase()) }}
                 </td>
                 <td :class="['flex flex-1 items-center px-6 py-4 whitespace-nowrap text-sm font-medium text-left', user._id === admin._id ? 'bg-yellow-50' : '']">

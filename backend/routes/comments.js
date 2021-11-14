@@ -59,8 +59,14 @@ router.put('/:id', function(req, res, next) {
 });
 
 /* DELETE delete comment specified with id */
-router.delete('/:id', function(req, res, next) {
-  res.send('respond with a resource');
+router.delete('/:id', async function(req, res, next) {
+  if (!req.params.id) res.json({ err: 'Please provide an id param.' })
+  else {
+    await Comment.findByIdAndDelete(req.params.id)
+    await Comment.deleteMany({ georeferenceId: req.params.id})
+
+    res.send(`Channel ${req.params.id} deleted succesfully.`)
+  }
 });
 
 module.exports = router;

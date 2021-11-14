@@ -67,6 +67,22 @@ export default createStore({
       }).catch(function(err) {
         console.log('err', err)
       })
+    },
+    deleteChannel({ commit, state, dispatch}, payload) {
+      const { id } = payload
+      
+      // make api call to delete the channel specified by id
+      axios({
+        method: 'delete',
+        url: `http://localhost:3000/comments/${id}`,
+        headers: { 'Access-Control-Allow-Origin': '*' }
+      }).then(function (response) {
+        // reload comments data
+        dispatch('loadComments')
+
+      }).catch(function(err) {
+        console.log('err', err)
+      })
     }
   },
   modules: {

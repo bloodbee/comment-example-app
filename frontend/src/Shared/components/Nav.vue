@@ -18,14 +18,14 @@
           <!-- Admin module link -->
           <div class="hidden sm:flex sm:ml-6" v-if="isAdmin && isAdminModule">
             <div class="flex space-x-4 mr-20">
-              <router-link :to="{ name: 'Users' }" class="nav-link bg-yellow-400 text-gray-900 px-4 py-2 rounded-md text-sm font-medium">Users</router-link>
-              <router-link :to="{ name: 'Dashboard' }" class="nav-link bg-yellow-400 text-gray-900 px-4 py-2 rounded-md text-sm font-medium">Channels</router-link>
+              <router-link :to="{ name: 'AdminUsers' }" class="nav-link bg-yellow-400 text-gray-900 px-4 py-2 rounded-md text-sm font-medium">Users</router-link>
+              <router-link :to="{ name: 'AdminChannels' }" class="nav-link bg-yellow-400 text-gray-900 px-4 py-2 rounded-md text-sm font-medium">Channels</router-link>
             </div>
           </div>
           <!-- Admin link -->
           <div class="hidden sm:flex sm:ml-6" v-if="isAdmin">
             <div class="flex space-x-4">
-              <router-link :to="{ name: 'Dashboard' }" class="nav-link bg-gray-900 text-white px-4 py-2 rounded-md text-sm font-medium">Admin</router-link>
+              <router-link :to="{ name: 'AdminDashboard' }" class="nav-link bg-gray-900 text-white px-4 py-2 rounded-md text-sm font-medium">Admin</router-link>
             </div>
           </div>
         </div>
@@ -47,9 +47,9 @@
 
     <DisclosurePanel class="sm:hidden" v-if="isAdmin">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <DisclosureButton as="router-link" :to="{ name: 'Dashboard' }" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Admin</DisclosureButton>
-        <DisclosureButton v-if="isAdminModule" as="router-link" :to="{ name: 'Users' }" class="bg-yellow-400 text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Users</DisclosureButton>
-        <DisclosureButton v-if="isAdminModule" as="router-link" :to="{ name: 'Dashboard' }" class="bg-yellow-400 text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Comments</DisclosureButton>
+        <DisclosureButton as="router-link" :to="{ name: 'AdminDashboard' }" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Admin</DisclosureButton>
+        <DisclosureButton v-if="isAdminModule" as="router-link" :to="{ name: 'AdminUsers' }" class="bg-yellow-400 text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Users</DisclosureButton>
+        <DisclosureButton v-if="isAdminModule" as="router-link" :to="{ name: 'AdminChannels' }" class="bg-yellow-400 text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Comments</DisclosureButton>
       </div>
     </DisclosurePanel>
 
