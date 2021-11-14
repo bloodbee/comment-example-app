@@ -6,10 +6,10 @@
     <textarea required placeholder="Your comment here." v-model="comment" class="comment-textarea w-full bg-gray-100 border-none rounded-lg h-24 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400" wrap="soft" maxlength="300" cols="100" rows="5" name="new-comment" id="new-comment">
     </textarea>
 
-    <div class="px-4 py-3 sm:px-6 flex flex-col sm:flex-row justify-between">
-      <p v-if="commentError" class="absolute left-20 px-4 pb-5 text-base text-red-500">{{ commentError }}</p>
-      <p v-if="commentSuccess" class="absolute left-20 px-4 pb-5 text-base text-green-500">{{ commentSuccess }}</p>
-      <button @click.prevent="handleCommentForm" type="button" class="sm:absolute sm:right-24 inline-flex bg-transparent justify-center py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 mb-10 px-4">
+    <div class="px-4 pb-3 sm:py-3 sm:pb-0 sm:px-6 flex flex-col sm:flex-row justify-between">
+      <p v-if="commentError" class="relative sm:absolute sm:left-40 px-4 pb-1 sm:pb-5 text-base text-red-500">{{ commentError }}</p>
+      <p v-if="commentSuccess" class="relative sm:absolute sm:left-40 px-4 pb-1 sm:pb-5 text-base text-green-500">{{ commentSuccess }}</p>
+      <button @click.prevent="handleCommentForm" type="button" class="sm:absolute sm:right-44 inline-flex bg-transparent justify-center py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 mb-10 px-4">
         Submit
       </button>
     </div>
@@ -66,6 +66,11 @@ export default {
               // add comment to our store
               store.commit('addComment', response.data.comment);
 
+              // flush datas
+              comment.value = null
+              orderId.value = null
+
+              // close modal
               if (emit) emit('closeModal');
             }
           });

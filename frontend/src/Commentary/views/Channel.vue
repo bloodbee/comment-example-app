@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import CommentComponent from '@/components/Comment.vue'
-import CommentFormComponent from '@/components/CommentForm.vue'
+import CommentComponent from '@/Commentary/components/Comment.vue'
+import CommentFormComponent from '@/Commentary/components/CommentForm.vue'
 
 export default {
   name: 'ChannelView',

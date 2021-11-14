@@ -2,6 +2,10 @@ let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 
 let userSchema = new Schema({
+  pseudonym: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true
@@ -10,7 +14,7 @@ let userSchema = new Schema({
     type: String,
     required: true
   },
-  role: { type: String, default: 'basic' }
+  role: { type: String, default: 'user' }
 }, {
   collection: 'users',
   timestamps: true

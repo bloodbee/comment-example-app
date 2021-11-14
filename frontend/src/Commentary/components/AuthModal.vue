@@ -78,6 +78,11 @@
                           <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6">
+                              <label for="register-pseudo" class="block text-sm font-medium text-gray-700">Pseudonym</label>
+                              <input autocomplete="register-pseudo"  v-model="registerPseudo" type="text" name="register-pseudo" id="register-pseudo" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                            </div>
+
+                            <div class="col-span-6">
                               <label for="register-email" class="block text-sm font-medium text-gray-700">Email</label>
                               <input autocomplete="register-email"  v-model="registerEmail" type="email" name="register-email" id="register-email" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
@@ -144,19 +149,20 @@ export default {
     let isOpen = ref(props.modalStatus);
 
     // login props
-    let loginEmail = ref(null)
-    let loginPassword = ref(null)
-    let loginError = ref(null)
-    let loginSuccess = ref(null)
+    let loginEmail = ref(null);
+    let loginPassword = ref(null);
+    let loginError = ref(null);
+    let loginSuccess = ref(null);
 
     // registerr props
-    let registerEmail = ref(null)
-    let registerPassword = ref(null)
-    let registerConfirmPassword = ref(null)
-    let registerError = ref(null)
-    let registerSuccess = ref(null)
+    let registerPseudo = ref(null);
+    let registerEmail = ref(null);
+    let registerPassword = ref(null);
+    let registerConfirmPassword = ref(null);
+    let registerError = ref(null);
+    let registerSuccess = ref(null);
 
-    const store = useStore()
+    const store = useStore();
     
     return {
       isOpen,
@@ -164,6 +170,7 @@ export default {
       loginPassword,
       loginError,
       loginSuccess,
+      registerPseudo,
       registerEmail,
       registerPassword,
       registerConfirmPassword,
@@ -171,8 +178,8 @@ export default {
       registerSuccess,
       handleLogin() {
         // reset login errors & success
-        loginError.value = null
-        loginSuccess.value = null
+        loginError.value = null;
+        loginSuccess.value = null;
 
         // check that we have all we need
         if (loginEmail.value && loginPassword.value) {
@@ -190,9 +197,9 @@ export default {
             if ('err' in data) { // internal errors ?
               loginError.value = data.err
             } else {
-              loginSuccess.value = "Signin succesfully."
+              loginSuccess.value = "Signin succesfully.";
               // set user in store
-              store.commit('setUser', response.data.user)
+              store.commit('setUser', response.data.user);
 
               // close modal
               setTimeout(() => {
@@ -201,17 +208,17 @@ export default {
             }
           });
         } else {
-          loginError.value = "All fields are mandatory."
+          loginError.value = "All fields are mandatory.";
         }
         // this.$emit('closeModal');
       },
       handleRegister() {
         // reset register errors & success
-        registerError.value = null
-        registerSuccess.value = null
+        registerError.value = null;
+        registerSuccess.value = null;
 
         // check that we have all we need
-        if (registerEmail.value && registerPassword.value && registerConfirmPassword.value) {
+        if (registerEmail.value && registerPseudo.value && registerPassword.value && registerConfirmPassword.value) {
           if (registerPassword.value === registerConfirmPassword.value) {
             // call api with axios on /users/post
             axios({
@@ -219,7 +226,8 @@ export default {
               url: 'http://localhost:3000/users/',
               data: {
                 email: registerEmail.value,
-                password: registerPassword.value
+                password: registerPassword.value,
+                pseudonym: registerPseudo.value
               },
               headers: { 'Access-Control-Allow-Origin': '*' }
             }).then(function (response) {
@@ -228,7 +236,7 @@ export default {
               if ('err' in data) { // internal errors ?
                 registerError.value = data.err
               } else {
-                registerSuccess.value = "Registered succesfully, you can signin from now."
+                registerSuccess.value = "Registered succesfully, you can now signin.";
                 // close modal
                 setTimeout(() => {
                   emit('closeModal');
@@ -236,10 +244,10 @@ export default {
               }
             });
           } else {
-            registerError.value = "Mismatch passwords."
+            registerError.value = "Mismatch passwords.";
           }
         } else {
-          registerError.value = "All fields are mandatory."
+          registerError.value = "All fields are mandatory.";
         }
 
       }
