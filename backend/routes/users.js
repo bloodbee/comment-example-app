@@ -93,8 +93,19 @@ router.post('/', function(req, res, next) {
 });
 
 /* PUT update user specified with id */
-router.put('/:id', function(req, res, next) {
-  res.send('respond with a resource');
+router.put('/:id', async function(req, res, next) {
+  if (!req.params.id) res.json({ err: 'Please provide an id param.' })
+  else {
+    const datas = {}
+    if (req.body.email) datas.email = req.body.email
+    if (req.body.pseudonym) datas.pseudonym = req.body.pseudonym
+    if (req.body.password) datas.hashedPassword = await bcrypt.hash(req.body.password, saltRounds)
+    if (req.body.role) datas.role = req.body.role
+
+    await User.findByIdAndUpdate(req.params.id, datas)
+
+    res.send(`User ${req.params.id} updated succesfully.`)
+  }
 });
 
 /* DELETE delete user specified with id */

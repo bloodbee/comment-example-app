@@ -37,7 +37,7 @@
                   {{ user.role.replace(/^\w/, (c) => c.toUpperCase()) }}
                 </td>
                 <td :class="['flex flex-1 items-center px-6 py-4 whitespace-nowrap text-sm font-medium text-left', user._id === admin._id ? 'bg-yellow-50' : '']">
-                  <a href="#" class="" title="Edit"><PencilIcon class="text-yellow-400 hover:text-yellow-500 h-6 w-6" /></a>
+                  <a href="#" class="" @click.prevent="openEditUserModal(user)" title="Edit"><PencilIcon class="text-yellow-400 hover:text-yellow-500 h-6 w-6" /></a>
                   <a v-if="user._id !== admin._id" href="#" @click.prevent="deleteUser(user._id)" class="ml-10" title="Delete"><TrashIcon class="text-red-500 hover:text-red-700 h-6 w-6" /></a>
                 </td>
               </tr>
@@ -57,6 +57,7 @@
     </div>
 
     <AddUserModalComponent v-if="isAddUserModalOpen" :modal-status="isAddUserModalOpen" @close-modal="closeAddUserModal"/>
+    <EditUserModalComponent v-if="isEditUserModalOpen" :modal-status="isEditUserModalOpen" :user="userEditing" @close-modal="closeEditUserModal"/>
 
   </div>
 </template>
@@ -68,6 +69,7 @@ import { useStore } from 'vuex';
 import { TrashIcon, PlusIcon, PencilIcon } from '@heroicons/vue/outline'
 
 import AddUserModalComponent from '@/Admin/components/AddUserModal.vue'
+import EditUserModalComponent from '@/Admin/components/EditUserModal.vue'
 
 export default {
   name: 'UsersView',
@@ -75,22 +77,35 @@ export default {
     TrashIcon,
     PlusIcon,
     PencilIcon,
-    AddUserModalComponent
+    AddUserModalComponent,
+    EditUserModalComponent
   },
   props: ['admin'],
   setup() {
     const store = useStore()
 
     let isAddUserModalOpen = ref(false);
+    let isEditUserModalOpen = ref(false);
+    let userEditing = ref(null);
     
     return {
       isAddUserModalOpen,
+      isEditUserModalOpen,
+      userEditing,
       users: computed(() => store.state.users),
       openAddUserModal() {
         isAddUserModalOpen.value = true;
       },
       closeAddUserModal() {
         isAddUserModalOpen.value = false;
+      },
+      openEditUserModal(user) {
+        isEditUserModalOpen.value = true;
+        userEditing.value = user
+      },
+      closeEditUserModal() {
+        isEditUserModalOpen.value = false;
+        userEditing.value = null
       },
       deleteUser(id) {
         store.dispatch('deleteUser', { id: id })

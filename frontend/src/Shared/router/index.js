@@ -38,6 +38,11 @@ const routes = [
     name: 'AdminDashboard',
     component: DashboardLayout,
     meta: { admin: true },
+    redirect: to => {
+      // the function receives the target route as the argument
+      // we return a redirect path/location here to push to users list in admin
+      return { name: 'AdminUsers' }
+    },
     children: [
       {
         path: 'users',

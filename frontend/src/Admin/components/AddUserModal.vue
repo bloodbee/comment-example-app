@@ -47,23 +47,23 @@
                           <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6">
-                              <label for="register-pseudo" class="block text-sm font-medium text-gray-700">Pseudonym</label>
-                              <input autocomplete="register-pseudo"  v-model="userPseudo" type="text" name="register-pseudo" id="register-pseudo" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label for="add-pseudo" class="block text-sm font-medium text-gray-700">Pseudonym</label>
+                              <input autocomplete="add-pseudo"  v-model="userPseudo" type="text" name="add-pseudo" id="add-pseudo" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="register-email" class="block text-sm font-medium text-gray-700">Email</label>
-                              <input autocomplete="register-email"  v-model="userEmail" type="email" name="register-email" id="register-email" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label for="add-email" class="block text-sm font-medium text-gray-700">Email</label>
+                              <input autocomplete="add-email"  v-model="userEmail" type="email" name="add-email" id="add-email" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="register-password" class="block text-sm font-medium text-gray-700">Password</label>
-                              <input autocomplete="register-password"  v-model="userPassword" type="password" name="register-password" id="register-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label for="add-password" class="block text-sm font-medium text-gray-700">Password</label>
+                              <input autocomplete="add-password"  v-model="userPassword" type="password" name="add-password" id="add-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="register-confirm-password" class="block text-sm font-medium text-gray-700">Password confirmation</label>
-                              <input autocomplete="register-confirm-password"  v-model="userConfirmPassword" type="password" name="register-confirm-password" id="register-confirm-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label for="add-confirm-password" class="block text-sm font-medium text-gray-700">Password confirmation</label>
+                              <input autocomplete="add-confirm-password"  v-model="userConfirmPassword" type="password" name="add-confirm-password" id="add-confirm-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                           </div>
@@ -72,7 +72,7 @@
                         <p v-if="addUserSuccess" class="px-6 pb-5 text-base text-green-500">{{ addUserSuccess }}</p>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                           <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-                            Create
+                            Submit
                           </button>
                         </div>
                       </div>
