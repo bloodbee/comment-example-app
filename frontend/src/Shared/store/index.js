@@ -46,6 +46,21 @@ export default createStore({
         console.log('err', err)
       })
     },
+    deleteUser({ commit, state, dispatch}, payload) {
+      const { id } = payload
+      
+      // make api call to delete the channel specified by id
+      axios({
+        method: 'delete',
+        url: `http://localhost:3000/users/${id}`,
+        headers: { 'Access-Control-Allow-Origin': '*' }
+      }).then(function (response) {
+        // remove the user from our state users list
+        state.users = state.users.filter(el => el._id !== id)
+      }).catch(function(err) {
+        console.log('err', err)
+      })
+    },
     loadComments({ commit, state }) {
       // save the comments currently in store
       const oldComments = [...state.comments]

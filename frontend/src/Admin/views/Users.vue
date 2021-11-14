@@ -18,7 +18,7 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            <tbody class="bg-white divide-y divide-gray-200" v-if="users.length > 0">
               <tr v-for="user in users" :key="user._id">
                 <td :class="['px-6 py-4 whitespace-nowrap', user._id === admin._id ? 'bg-yellow-50' : '']">
                   <div class="flex items-center">
@@ -37,7 +37,16 @@
                 </td>
                 <td :class="['flex flex-1 items-center px-6 py-4 whitespace-nowrap text-sm font-medium text-left', user._id === admin._id ? 'bg-yellow-50' : '']">
                   <a href="#" class="" title="Edit"><PencilIcon class="text-yellow-400 hover:text-yellow-500 h-6 w-6" /></a>
-                  <a v-if="user._id !== admin._id" href="#" class="ml-10" title="Delete"><TrashIcon class="text-red-500 hover:text-red-700 h-6 w-6" /></a>
+                  <a v-if="user._id !== admin._id" href="#" @click.prevent="deleteUser(user._id)" class="ml-10" title="Delete"><TrashIcon class="text-red-500 hover:text-red-700 h-6 w-6" /></a>
+                </td>
+              </tr>
+            </tbody>
+            <tbody class="bg-white divide-y divide-gray-200" v-else>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap" colspan="6">
+                  <p class="text-sm text-left font-medium text-gray-900 text-center">
+                    There are no users.
+                  </p>
                 </td>
               </tr>
             </tbody>
@@ -66,7 +75,10 @@ export default {
     const store = useStore()
     
     return {
-      users: computed(() => store.state.users)
+      users: computed(() => store.state.users),
+      deleteUser(id) {
+        store.dispatch('deleteUser', { id: id })
+      }
     }
   },
 }

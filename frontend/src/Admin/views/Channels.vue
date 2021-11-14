@@ -24,8 +24,8 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              <tr v-for="channel in channels" :key="channel._id">
+            <tbody class="bg-white divide-y divide-gray-200" v-if="channels.length > 0">
+              <tr v-for="channel in channels" :key="channel._id" >
                 <td class="px-6 py-4 whitespace-nowrap">
                     <p class="text-sm text-left font-medium text-gray-900">
                       {{ channel.text }}
@@ -47,11 +47,19 @@
                         {{ new Date(channel.createdAt).toLocaleString() }}
                       </div>
                     </div>
-                  </div>
-                  
+                  </div> 
                 </td>
                 <td class="flex flex-1 items-center px-6 py-4 whitespace-nowrap text-sm font-medium text-left">
                   <router-link :to="{ name: 'AdminChannel', params: { id: channel._id} }" class="mx-auto" title="Detail"><EyeIcon class="text-yellow-400 hover:text-yellow-500 h-6 w-6" /></router-link>
+                </td>
+              </tr>
+            </tbody>
+            <tbody class="bg-white divide-y divide-gray-200" v-else>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap" colspan="6">
+                  <p class="text-sm text-left font-medium text-gray-900 text-center">
+                    There are no comments.
+                  </p>
                 </td>
               </tr>
             </tbody>
