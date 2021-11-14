@@ -3,6 +3,7 @@
   <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <button @click="openAddUserModal" type="button" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium mb-10">Add user</button>
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
@@ -54,6 +55,9 @@
         </div>
       </div>
     </div>
+
+    <AddUserModalComponent v-if="isAddUserModalOpen" :modal-status="isAddUserModalOpen" @close-modal="closeAddUserModal"/>
+
   </div>
 </template>
 
@@ -63,19 +67,31 @@ import { useStore } from 'vuex';
 
 import { TrashIcon, PlusIcon, PencilIcon } from '@heroicons/vue/outline'
 
+import AddUserModalComponent from '@/Admin/components/AddUserModal.vue'
+
 export default {
   name: 'UsersView',
   components: {
     TrashIcon,
     PlusIcon,
-    PencilIcon
+    PencilIcon,
+    AddUserModalComponent
   },
   props: ['admin'],
   setup() {
     const store = useStore()
+
+    let isAddUserModalOpen = ref(false);
     
     return {
+      isAddUserModalOpen,
       users: computed(() => store.state.users),
+      openAddUserModal() {
+        isAddUserModalOpen.value = true;
+      },
+      closeAddUserModal() {
+        isAddUserModalOpen.value = false;
+      },
       deleteUser(id) {
         store.dispatch('deleteUser', { id: id })
       }
