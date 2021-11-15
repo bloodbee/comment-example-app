@@ -118,7 +118,7 @@ import {
   ListboxOption,
 } from "@headlessui/vue";
 
-const axios = require('axios').default;
+import axios from "axios";
 
 export default {
   components: {
@@ -167,31 +167,30 @@ export default {
         if (userEmail.value && userPseudo.value && userPassword.value && userConfirmPassword.value) {
           if (userPassword.value === userConfirmPassword.value) {
             // call api with axios on /users/post
-            axios({
-              method: 'post',
-              url: 'http://localhost:3000/users/',
-              data: {
-                email: userEmail.value,
-                password: userPassword.value,
-                pseudonym: userPseudo.value,
-                role: userRole.value
-              },
+            axios.post('http://localhost:3000/users/', {
+              email: userEmail.value,
+              password: userPassword.value,
+              pseudonym: userPseudo.value,
+              role: userRole.value
+            }, {
               headers: { 'Access-Control-Allow-Origin': '*' }
             }).then(function (response) {
               const data = response.data
 
-              if ('err' in data) { // internal errors ?
-                addUserError.value = data.err
-              } else {
-                addUserSuccess.value = "Added succesfully.";
+              if (data) {
+                if ('err' in data) { // internal errors ?
+                  addUserError.value = data.err
+                } else {
+                  addUserSuccess.value = "Added succesfully.";
 
-                // reload users
-                store.dispatch('loadUsers')
+                  // reload users
+                  store.dispatch('loadUsers')
 
-                // close modal
-                setTimeout(() => {
-                  emit('closeModal');
-                }, 4000)
+                  // close modal
+                  setTimeout(() => {
+                    emit('closeModal');
+                  }, 4000)
+                }
               }
             });
           } else {

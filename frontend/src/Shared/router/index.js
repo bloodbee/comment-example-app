@@ -7,7 +7,7 @@ import HomeView from '@/Commentary/views/Home.vue';
 import ChannelView from '@/Commentary/views/Channel.vue';
 
 // Admin module views
-import DashboardLayout from '@/Admin/layout/Dashboard.vue';
+import DashboardLayout from '@/Admin/layouts/Dashboard.vue';
 import UsersView from '@/Admin/views/Users.vue';
 import ChannelsView from '@/Admin/views/Channels.vue';
 import ChannelDetailView from '@/Admin/views/Channel.vue';

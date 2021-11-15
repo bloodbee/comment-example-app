@@ -38,7 +38,7 @@
                 Edit user
               </DialogTitle>
               <div class="mt-6 flex flex-1 flex-col sm:flex-row justify-around">
-                <div id="add" class="sm:ml-6 w-full sm:w-1/2">
+                <div id="edit" class="sm:ml-6 w-full sm:w-1/2">
                   <h4 class="text-lg sm:text-2xl font-medium text-yellow-400">Edit {{ user._id }}</h4>
                   <div class="mt-5 md:mt-10 md:col-span-2">
                     <form action="#" @submit.prevent="handleEditUser">
@@ -118,7 +118,7 @@ import {
   ListboxOption,
 } from "@headlessui/vue";
 
-const axios = require('axios').default;
+import axios from "axios";
 
 export default {
   components: {
@@ -170,15 +170,12 @@ export default {
         }
 
         // call api with axios on /users/post
-        axios({
-          method: 'put',
-          url: `http://localhost:3000/users/${props.user._id}`,
-          data: {
-            email: userEmail.value,
-            password: userNewPassword.value,
-            pseudonym: userPseudo.value,
-            role: userRole.value
-          },
+        axios.put(`http://localhost:3000/users/${props.user._id}`, {
+          email: userEmail.value,
+          password: userNewPassword.value,
+          pseudonym: userPseudo.value,
+          role: userRole.value
+        }, {
           headers: { 'Access-Control-Allow-Origin': '*' }
         }).then(function (response) {
           const data = response.data

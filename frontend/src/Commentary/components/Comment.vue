@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-item flex flex-1 flex-col justify-between relative mb-0 border border-yellow-400 rounded-lg p-1 shadow overflow-hidden">
+  <div class="comment grid-item flex flex-1 flex-col justify-between relative mb-0 border border-yellow-400 rounded-lg p-1 shadow overflow-hidden">
     <div class="group h-4/5">
       <router-link :to="{name: 'Channel', params: { id: comment._id }}">
         <p class="text-lg text-gray-500 line-clamp-4 bg-gray-100 rounded-lg border border-gray-200 text-left pl-2">
@@ -72,6 +72,8 @@ import {
 } from "@headlessui/vue";
 import CommentFormComponent from '@/Commentary/components/CommentForm.vue'
 
+import baseMixin from '@/Shared/mixins/base'
+
 export default {
   name: 'CommentComponent',
   components: {
@@ -83,6 +85,7 @@ export default {
     DialogOverlay,
     DialogTitle,
   },
+  mixins: [baseMixin],
   props: ['comment'],
   data() {
     return {
@@ -93,9 +96,6 @@ export default {
     getSubcomments() {
       return this.$store.state.comments.filter(el => el && el.georeferenceId === this.comment._id) || []
     },
-    user() {
-      return this.$store.state.user
-    }
   },
   methods: {
     switchModal() {

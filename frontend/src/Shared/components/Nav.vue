@@ -34,10 +34,10 @@
           <Menu as="div" class="ml-3 relative">
             <div>
               <MenuButton v-if="!user" @click="openAuthModal" class="items-center justify-center bg-gray-800 flex text-sm text-yellow-400 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <LockClosedIcon  class="h-8 w-8" aria-hidden="true" />
+                <LockClosedIcon id="auth-button" class="h-8 w-8" aria-hidden="true" />
               </MenuButton>
               <MenuButton v-else @click="logout" class="items-center justify-center bg-gray-800 flex text-sm text-yellow-400 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <LogoutIcon v-if="user" class="h-8 w-8" aria-hidden="true" />
+                <LogoutIcon id="auth-button" class="h-8 w-8" aria-hidden="true" />
               </MenuButton>
             </div>
           </Menu>
@@ -64,6 +64,8 @@
 import { ref, computed } from "vue";
 import { useStore } from 'vuex';
 import { useRouter, useRoute } from 'vue-router';
+
+import baseMixin from '@/Shared/mixins/base'
 
 import {
   Disclosure,
@@ -95,6 +97,7 @@ export default {
     XIcon,
     AuthModalComponent
   },
+  mixins: [baseMixin],
   setup() {
     let isAuthModalOpen = ref(false);
     const store = useStore()
@@ -118,7 +121,6 @@ export default {
           router.push({ name: 'Home' })
         }
       },
-      user: computed(() => store.state.user), // retrieve the authentified user
       isAdmin: computed(() => store.state.user && store.state.user.role === 'admin'), // checked that the authentified user is admin
       isAdminModule: computed(() => route.path.startsWith('/admin'))
     }

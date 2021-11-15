@@ -81,7 +81,6 @@ export default {
   components: {
     EyeIcon,
   },
-  props: ['admin'],
   setup() {
     const store = useStore()
     

@@ -132,7 +132,7 @@ import {
   DialogTitle,
 } from "@headlessui/vue";
 
-const axios = require('axios').default;
+import axios from "axios";
 
 export default {
   components: {
@@ -184,33 +184,32 @@ export default {
         // check that we have all we need
         if (loginEmail.value && loginPassword.value) {
           // call api with axios on /users/login
-          axios({
-            method: 'post',
-            url: 'http://localhost:3000/users/login/',
-            data: {
-              email: loginEmail.value,
-              password: loginPassword.value
-            },
+          axios.post('http://localhost:3000/users/login/', {
+            email: loginEmail.value,
+            password: loginPassword.value
+          }, {
             headers: { 'Access-Control-Allow-Origin': '*' }
           }).then(function (response) {
-            const data = response.data
-            if ('err' in data) { // internal errors ?
-              loginError.value = data.err
-            } else {
-              loginSuccess.value = "Signin succesfully.";
-              // set user in store
-              store.commit('setUser', response.data.user);
+            const data = response.data;
+            
+            if (data) {
+              if ('err' in data) { // internal errors ?
+                loginError.value = data.err
+              } else {
+                loginSuccess.value = "Signin succesfully.";
+                // set user in store
+                store.commit('setUser', response.data.user);
 
-              // close modal
-              setTimeout(() => {
-                emit('closeModal');
-              }, 4000)
+                // close modal
+                setTimeout(() => {
+                  emit('closeModal');
+                }, 4000)
+              }
             }
           });
         } else {
           loginError.value = "All fields are mandatory.";
         }
-        // this.$emit('closeModal');
       },
       handleRegister() {
         // reset register errors & success
@@ -221,26 +220,25 @@ export default {
         if (registerEmail.value && registerPseudo.value && registerPassword.value && registerConfirmPassword.value) {
           if (registerPassword.value === registerConfirmPassword.value) {
             // call api with axios on /users/post
-            axios({
-              method: 'post',
-              url: 'http://localhost:3000/users/',
-              data: {
-                email: registerEmail.value,
-                password: registerPassword.value,
-                pseudonym: registerPseudo.value
-              },
+            axios.post('http://localhost:3000/users/', {
+              email: registerEmail.value,
+              password: registerPassword.value,
+              pseudonym: registerPseudo.value
+            }, {
               headers: { 'Access-Control-Allow-Origin': '*' }
             }).then(function (response) {
               const data = response.data
 
-              if ('err' in data) { // internal errors ?
-                registerError.value = data.err
-              } else {
-                registerSuccess.value = "Registered succesfully, you can now signin.";
-                // close modal
-                setTimeout(() => {
-                  emit('closeModal');
-                }, 4000)
+              if (data) {
+                if ('err' in data) { // internal errors ?
+                  registerError.value = data.err
+                } else {
+                  registerSuccess.value = "Registered succesfully, you can now signin.";
+                  // close modal
+                  setTimeout(() => {
+                    emit('closeModal');
+                  }, 4000)
+                }
               }
             });
           } else {

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-1 flex-col px-4 sm:px-20 my-10">
+  <div class="flex flex-1 flex-col px-4 sm:px-20 my-10" id="home">
     <CommentFormComponent v-if="user" />
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10" id="comments">
       <CommentComponent v-for="comment in comments" :key="comment._id" :comment="comment"></CommentComponent>
@@ -12,12 +12,15 @@
 import CommentComponent from '@/Commentary/components/Comment.vue'
 import CommentFormComponent from '@/Commentary/components/CommentForm.vue'
 
+import baseMixin from '@/Shared/mixins/base'
+
 export default {
   name: 'HomeView',
   components: {
     CommentComponent,
     CommentFormComponent
   },
+  mixins: [baseMixin],
   async mounted() {
     // load all comments into the store
     await this.$store.dispatch('loadComments')
@@ -37,12 +40,6 @@ export default {
         else return 1;
       })
     },
-    /**
-     * Retrieve the user in our store (connected or not)
-     */
-    user() {
-      return this.$store.state.user
-    }
   }
 };
 </script>

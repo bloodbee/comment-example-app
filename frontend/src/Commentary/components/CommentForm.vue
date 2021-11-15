@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-gray-500 rounded-lg shadow overflow-hidden sm:rounded-md h-64 p-2">
+  <div class="border border-gray-500 rounded-lg shadow overflow-hidden sm:rounded-md h-64 p-2" id="comment-form">
     <label class="block font-medium text-gray-700 text-left text-xl">New comment</label>
     
     <input placeholder="Your order ID here." v-model="orderId" class="comment-order w-full bg-gray-100 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 mb-2 h-8 pl-3" name="new-order" id="new-order" />
@@ -19,7 +19,8 @@
 <script>
 import { ref } from "vue";
 import { useStore } from 'vuex';
-const axios = require('axios').default;
+
+import axios from "axios";
 
 export default {
   name: 'CommentFormComponent',
@@ -46,15 +47,12 @@ export default {
         if (comment.value) {
 
           // make api call to create the comment
-          axios({
-            method: 'post',
-            url: 'http://localhost:3000/comments/',
-            data: {
-              comment: comment.value,
-              userId: store.state.user._id,
-              orderId: orderId.value,
-              georeferenceId: props.georeferenceId || null
-            },
+          axios.post('http://localhost:3000/comments/', {
+            comment: comment.value,
+            userId: store.state.user._id,
+            orderId: orderId.value,
+            georeferenceId: props.georeferenceId || null
+          }, {
             headers: { 'Access-Control-Allow-Origin': '*' }
           }).then(function (response) {
             const data = response.data
