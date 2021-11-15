@@ -29,10 +29,10 @@ router.get('/:id', function(req, res, next) {
 
 /* POST create a comment */
 router.post('/', function(req, res, next) {
-  const { comment, userId, orderId, georeferenceId, position } = req.body
+  const { comment, userId, orderId, georeferenceId } = req.body
 
   if (!comment || (!userId && !orderId) || (!userId && !georeferenceId)) {
-    res.json({error: 'Bad request formatting, name or symbol is missing.'})
+    res.json({err: 'Bad request formatting, name or symbol is missing.'})
   } else {
 
     Comment.create({
@@ -51,11 +51,6 @@ router.post('/', function(req, res, next) {
       }
     });
   }
-});
-
-/* PUT update comment specified with id */
-router.put('/:id', function(req, res, next) {
-  res.send('respond with a resource');
 });
 
 /* DELETE delete comment specified with id */

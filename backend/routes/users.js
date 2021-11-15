@@ -17,7 +17,7 @@ router.post('/login', async function(req, res, next) {
   const password = req.body.password;
 
   if (!email || !password) {
-    res.json({error: 'Bad request formatting, name or symbol is missing.'});
+    res.json({err: 'Bad request formatting, name or symbol is missing.'});
   } else {
     User.findOne().byEmail(email).exec(async (err, user) => {
       if (err) res.json({ err: err });
@@ -65,7 +65,7 @@ router.post('/', function(req, res, next) {
   const role = req.body.role;
 
   if (!email || !password) {
-    res.json({error: 'Bad request formatting, name or symbol is missing.'});
+    res.json({err: 'Bad request formatting, name or symbol is missing.'});
   } else {
     // First, find if there is no other user with the same email - which is unique
     User.findOne().byEmail(email).exec(async (err, alreadyExistUser) => {
