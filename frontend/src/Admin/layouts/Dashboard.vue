@@ -10,16 +10,16 @@ export default {
   name: 'DashboardLayout',
   async mounted() {
     // load all users into the store
-    await this.$store.dispatch('loadUsers')
+    await this.$store.dispatch('loadUsers');
   },
   computed: {
     /**
      * Retrieve the admin in our store
      */
     admin() {
-      return this.$store.state.user
-    }
-  }
+      return this.$store.state.user;
+    },
+  },
 };
 </script>
 

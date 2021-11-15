@@ -4,7 +4,7 @@ export default {
      * Retrieve the user in our store (connected or not)
      */
     user() {
-      return this.$store.state.user
+      return this.$store.state.user;
     },
-  }
-}
+  },
+};

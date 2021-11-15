@@ -22,6 +22,10 @@ module.exports = {
       ],
       env: {
         jest: true,
+        commonjs: true,
+        node: true,
+        browser: true,
+        es6: true,
       },
     },
   ],

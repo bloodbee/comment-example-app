@@ -3,33 +3,30 @@ import AddUserModalComponent from '@/Admin/components/AddUserModal.vue';
 import store from '@/Shared/store';
 import router from '@/Shared/router';
 
-let url = ''
-let body = {}
+let url = '';
+let body = {}; // disable-no-unused-vars
 
-jest.mock("axios", () => ({
-  post: (_url, _body) => { 
-    return new Promise((resolve) => {
-      url = _url
-      body = _body
-      resolve(true)
-    })
-  },
-}))
+jest.mock('axios', () => ({
+  post: (_url, _body) => new Promise((resolve) => {
+    url = _url;
+    body = _body;
+    resolve(true);
+  }),
+}));
 
 describe('AddUserModal Component', () => {
-
   const wrapper = shallowMount(AddUserModalComponent, {
     props: {
-      modalStatus: false
+      modalStatus: false,
     },
     global: {
-      plugins: [router, store]
-    }
+      plugins: [router, store],
+    },
   });
 
   it("doesn't render add user modal", () => {
     expect(wrapper.find('#add').exists()).toBeFalsy();
-  })
+  });
 
   it('check initial datas', () => {
     expect(wrapper.vm.isOpen).toBeFalsy();
@@ -41,7 +38,7 @@ describe('AddUserModal Component', () => {
     expect(wrapper.vm.addUserSuccess).toBeNull();
   });
 
-  it('add user with missing fields', async() => {
+  it('add user with missing fields', async () => {
     wrapper.vm.userEmail = null;
     wrapper.vm.userPseudo = 'John Doe';
     wrapper.vm.userPassword = null;
@@ -50,10 +47,10 @@ describe('AddUserModal Component', () => {
     await wrapper.vm.handleAddUser();
 
     // check if it's a success
-    expect(wrapper.vm.addUserError).toBe("All fields are mandatory.");
-  })
+    expect(wrapper.vm.addUserError).toBe('All fields are mandatory.');
+  });
 
-  it('add user with password mismatch', async() => {
+  it('add user with password mismatch', async () => {
     wrapper.vm.userEmail = 'johndoe@email.com';
     wrapper.vm.userPseudo = 'John Doe';
     wrapper.vm.userPassword = 'aaaaaa';
@@ -62,10 +59,10 @@ describe('AddUserModal Component', () => {
     await wrapper.vm.handleAddUser();
 
     // check if it's a success
-    expect(wrapper.vm.addUserError).toBe("Mismatch passwords.");
-  })
+    expect(wrapper.vm.addUserError).toBe('Mismatch passwords.');
+  });
 
-  it('add user with good values', async() => {
+  it('add user with good values', async () => {
     wrapper.vm.userEmail = 'johndoe@email.com';
     wrapper.vm.userPseudo = 'John Doe';
     wrapper.vm.userPassword = 'aaaaaa';
@@ -74,7 +71,6 @@ describe('AddUserModal Component', () => {
     await wrapper.vm.handleAddUser();
 
     // check if it's a success
-    expect(url).toBe("http://localhost:3000/users/");
-  })
-  
+    expect(url).toBe('http://localhost:3000/users/');
+  });
 });

@@ -3,28 +3,25 @@ import CommentFormComponent from '@/Commentary/components/CommentForm.vue';
 import store from '@/Shared/store';
 import router from '@/Shared/router';
 
-let url = ''
-let body = {}
+let url = '';
+let body = {}; // disable-no-unused-vars
 
-jest.mock("axios", () => ({
-  post: (_url, _body) => { 
-    return new Promise((resolve) => {
-      url = _url
-      body = _body
-      resolve(true)
-    })
-  },
-}))
+jest.mock('axios', () => ({
+  post: (_url, _body) => new Promise((resolve) => {
+    url = _url;
+    body = _body;
+    resolve(true);
+  }),
+}));
 
 describe('CommentForm Component', () => {
-
   const wrapper = shallowMount(CommentFormComponent, {
     props: {
-      georeferenceId: '1'
+      georeferenceId: '1',
     },
     global: {
-      plugins: [router, store]
-    }
+      plugins: [router, store],
+    },
   });
 
   it('renders comment correctly', () => {
@@ -42,16 +39,16 @@ describe('CommentForm Component', () => {
   it('check comment is mandatory on handleForm method', () => {
     wrapper.vm.handleCommentForm();
     expect(wrapper.vm.commentError).toBe('The comment is mandatory.');
-  })
+  });
 
   it('check handleForm method with good value', async () => {
     // set datas for our new comment
-    store.commit('setUser', { _id: "1"});
-    wrapper.vm.comment = "Lorem ipsum";
+    store.commit('setUser', { _id: '1' });
+    wrapper.vm.comment = 'Lorem ipsum';
 
     wrapper.vm.handleCommentForm();
 
     // check if it's a success
-    expect(url).toBe("http://localhost:3000/comments/");
-  })
+    expect(url).toBe('http://localhost:3000/comments/');
+  });
 });
