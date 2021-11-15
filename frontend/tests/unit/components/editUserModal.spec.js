@@ -3,47 +3,46 @@ import EditUserModalComponent from '@/Admin/components/EditUserModal.vue';
 import store from '@/Shared/store';
 import router from '@/Shared/router';
 
-let url = ''
-let body = {}
+let url = '';
+let body = {}; // disable-no-unused-vars
 
-jest.mock("axios", () => ({
-  put: (_url, _body) => { 
-    return new Promise((resolve) => {
-      url = _url
-      body = _body
-      resolve(true)
-    })
-  },
-}))
+jest.mock('axios', () => ({
+  put: (_url, _body) => new Promise((resolve) => {
+    url = _url;
+    body = _body;
+    resolve(true);
+  }),
+}));
 
 describe('EditUserModal Component', () => {
-
   const wrapper = shallowMount(EditUserModalComponent, {
     props: {
       modalStatus: false,
-      user: { _id: "1", pseudonym: "John Doe", email: "johndoe@email.com", role: "user"}
+      user: {
+        _id: '1', pseudonym: 'John Doe', email: 'johndoe@email.com', role: 'user',
+      },
     },
     global: {
-      plugins: [router, store]
-    }
+      plugins: [router, store],
+    },
   });
 
   it("doesn't render edit user modal", () => {
     expect(wrapper.find('#edit').exists()).toBeFalsy();
-  })
+  });
 
   it('check initial datas', () => {
     expect(wrapper.vm.isOpen).toBeFalsy();
-    expect(wrapper.vm.userPseudo).toBe("John Doe");
-    expect(wrapper.vm.userEmail).toBe("johndoe@email.com");
+    expect(wrapper.vm.userPseudo).toBe('John Doe');
+    expect(wrapper.vm.userEmail).toBe('johndoe@email.com');
     expect(wrapper.vm.userNewPassword).toBeNull();
     expect(wrapper.vm.userConfirmPassword).toBeNull();
-    expect(wrapper.vm.userRole).toBe("user");
+    expect(wrapper.vm.userRole).toBe('user');
     expect(wrapper.vm.editUserError).toBeNull();
     expect(wrapper.vm.editUserSuccess).toBeNull();
   });
 
-  it('edit user with password mismatch', async() => {
+  it('edit user with password mismatch', async () => {
     wrapper.vm.userEmail = 'johndoe@email.com';
     wrapper.vm.userPseudo = 'John Doe';
     wrapper.vm.userRole = 'user';
@@ -53,10 +52,10 @@ describe('EditUserModal Component', () => {
     await wrapper.vm.handleEditUser();
 
     // check if it's a success
-    expect(wrapper.vm.editUserError).toBe("Mismatch passwords.");
-  })
+    expect(wrapper.vm.editUserError).toBe('Mismatch passwords.');
+  });
 
-  it('edit user with good values', async() => {
+  it('edit user with good values', async () => {
     wrapper.vm.userEmail = 'johndoe@email.com';
     wrapper.vm.userPseudo = 'John Doe';
     wrapper.vm.userRole = 'admin';
@@ -66,7 +65,6 @@ describe('EditUserModal Component', () => {
     await wrapper.vm.handleEditUser();
 
     // check if it's a success
-    expect(url).toBe("http://localhost:3000/users/1");
-  })
-  
+    expect(url).toBe('http://localhost:3000/users/1');
+  });
 });

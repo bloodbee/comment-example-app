@@ -4,11 +4,10 @@ import store from '@/Shared/store';
 import router from '@/Shared/router';
 
 describe('Dashboard Layout', () => {
-
   const wrapper = shallowMount(DashboardLayout, {
     global: {
-      plugins: [router, store]
-    }
+      plugins: [router, store],
+    },
   });
 
   it('renders dashboard layout correctly', () => {

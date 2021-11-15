@@ -3,34 +3,31 @@ import AuthModalComponent from '@/Commentary/components/AuthModal.vue';
 import store from '@/Shared/store';
 import router from '@/Shared/router';
 
-let url = ''
-let body = {}
+let url = '';
+let body = {}; // disable-no-unused-vars
 
-jest.mock("axios", () => ({
-  post: (_url, _body) => { 
-    return new Promise((resolve) => {
-      url = _url
-      body = _body
-      resolve(true)
-    })
-  },
-}))
+jest.mock('axios', () => ({
+  post: (_url, _body) => new Promise((resolve) => {
+    url = _url;
+    body = _body;
+    resolve(true);
+  }),
+}));
 
 describe('AuthModal Component', () => {
-
   const wrapper = shallowMount(AuthModalComponent, {
     props: {
-      modalStatus: false
+      modalStatus: false,
     },
     global: {
-      plugins: [router, store]
-    }
+      plugins: [router, store],
+    },
   });
 
   it("doesn't render auth modal", () => {
     expect(wrapper.find('#login').exists()).toBeFalsy();
     expect(wrapper.find('#register').exists()).toBeFalsy();
-  })
+  });
 
   it('check initial datas', () => {
     expect(wrapper.vm.isOpen).toBeFalsy();
@@ -46,27 +43,27 @@ describe('AuthModal Component', () => {
     expect(wrapper.vm.registerSuccess).toBeNull();
   });
 
-  it('login user with missing fields', async() => {
+  it('login user with missing fields', async () => {
     wrapper.vm.loginEmail = null;
     wrapper.vm.loginPassword = null;
 
     await wrapper.vm.handleLogin();
 
     // check if it's a success
-    expect(wrapper.vm.loginError).toBe("All fields are mandatory.");
-  })
+    expect(wrapper.vm.loginError).toBe('All fields are mandatory.');
+  });
 
-  it('login user with good values', async() => {
+  it('login user with good values', async () => {
     wrapper.vm.loginEmail = 'johndoe@email.com';
     wrapper.vm.loginPassword = 'aaaaaa';
 
     await wrapper.vm.handleLogin();
 
     // check if it's a success
-    expect(url).toBe("http://localhost:3000/users/login/");
-  })
+    expect(url).toBe('http://localhost:3000/users/login/');
+  });
 
-  it('register user with missing fields', async() => {
+  it('register user with missing fields', async () => {
     wrapper.vm.registerEmail = null;
     wrapper.vm.registerPseudo = 'John Doe';
     wrapper.vm.registerPassword = null;
@@ -75,10 +72,10 @@ describe('AuthModal Component', () => {
     await wrapper.vm.handleRegister();
 
     // check if it's a success
-    expect(wrapper.vm.registerError).toBe("All fields are mandatory.");
-  })
+    expect(wrapper.vm.registerError).toBe('All fields are mandatory.');
+  });
 
-  it('register user with password mismatch', async() => {
+  it('register user with password mismatch', async () => {
     wrapper.vm.registerEmail = 'johndoe@email.com';
     wrapper.vm.registerPseudo = 'John Doe';
     wrapper.vm.registerPassword = 'aaaaaa';
@@ -87,10 +84,10 @@ describe('AuthModal Component', () => {
     await wrapper.vm.handleRegister();
 
     // check if it's a success
-    expect(wrapper.vm.registerError).toBe("Mismatch passwords.");
-  })
+    expect(wrapper.vm.registerError).toBe('Mismatch passwords.');
+  });
 
-  it('register user with good values', async() => {
+  it('register user with good values', async () => {
     wrapper.vm.registerEmail = 'johndoe@email.com';
     wrapper.vm.registerPseudo = 'John Doe';
     wrapper.vm.registerPassword = 'aaaaaa';
@@ -99,7 +96,6 @@ describe('AuthModal Component', () => {
     await wrapper.vm.handleRegister();
 
     // check if it's a success
-    expect(url).toBe("http://localhost:3000/users/");
-  })
-  
+    expect(url).toBe('http://localhost:3000/users/');
+  });
 });

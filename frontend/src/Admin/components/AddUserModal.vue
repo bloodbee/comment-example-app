@@ -29,7 +29,8 @@
             leave-to="opacity-0 scale-95"
           >
             <div
-              class="inline-block w-full max-w-3xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl"
+              class="inline-block w-full max-w-3xl p-6 my-8 overflow-hidden
+              text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl"
             >
               <DialogTitle
                 as="h3"
@@ -47,44 +48,139 @@
                           <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6">
-                              <label for="add-pseudo" class="block text-sm font-medium text-gray-700">Pseudonym</label>
-                              <input autocomplete="add-pseudo"  v-model="userPseudo" type="text" name="add-pseudo" id="add-pseudo" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="add-pseudo"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Pseudonym
+                              </label>
+                              <input
+                                autocomplete="add-pseudo"
+                                v-model="userPseudo"
+                                type="text"
+                                name="add-pseudo"
+                                id="add-pseudo"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="add-email" class="block text-sm font-medium text-gray-700">Email</label>
-                              <input autocomplete="add-email"  v-model="userEmail" type="email" name="add-email" id="add-email" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="add-email"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Email
+                              </label>
+                              <input
+                                autocomplete="add-email"
+                                v-model="userEmail"
+                                type="email"
+                                name="add-email"
+                                id="add-email"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="edit-role" class="block text-sm font-medium text-gray-700">Role</label>
+                              <label
+                                for="edit-role"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Role
+                              </label>
                               <Listbox v-model="userRole">
                                 <div class="relative mt-1">
-                                  <ListboxButton class="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">{{ userRole.replace(/^\w/, (c) => c.toUpperCase()) }}</ListboxButton>
-                                  <ListboxOptions class="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                    <ListboxOption class="text-gray-900 cursor-default select-none relative py-2 pl-10 pr-4" value="user">User</ListboxOption>
-                                    <ListboxOption class="text-gray-900 cursor-default select-none relative py-2 pl-10 pr-4" value="admin">Admin</ListboxOption>
+                                  <ListboxButton
+                                    class="relative w-full py-2 pl-3 pr-10 text-left bg-white
+                                    rounded-lg shadow-md cursor-default focus:outline-none
+                                    focus-visible:ring-2 focus-visible:ring-opacity-75
+                                    focus-visible:ring-white
+                                    focus-visible:ring-offset-orange-300
+                                    focus-visible:ring-offset-2
+                                    focus-visible:border-indigo-500 sm:text-sm"
+                                  >
+                                    {{ userRole.replace(/^\w/, (c) => c.toUpperCase()) }}
+                                  </ListboxButton>
+                                  <ListboxOptions
+                                    class="absolute w-full py-1 mt-1 overflow-auto text-base
+                                    bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black
+                                    ring-opacity-5 focus:outline-none sm:text-sm">
+                                    <ListboxOption
+                                      class="text-gray-900 cursor-default select-none
+                                      relative py-2 pl-10 pr-4"
+                                      value="user"
+                                    >
+                                      User
+                                    </ListboxOption>
+                                    <ListboxOption
+                                      class="text-gray-900 cursor-default select-none
+                                      relative py-2 pl-10 pr-4"
+                                      value="admin"
+                                    >
+                                      Admin
+                                    </ListboxOption>
                                   </ListboxOptions>
                                 </div>
                               </Listbox>
                             </div>
 
                             <div class="col-span-6">
-                              <label for="add-password" class="block text-sm font-medium text-gray-700">Password</label>
-                              <input autocomplete="add-password"  v-model="userPassword" type="password" name="add-password" id="add-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="add-password"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Password
+                              </label>
+                              <input
+                                autocomplete="add-password"
+                                v-model="userPassword"
+                                type="password"
+                                name="add-password"
+                                id="add-password"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="add-confirm-password" class="block text-sm font-medium text-gray-700">Password confirmation</label>
-                              <input autocomplete="add-confirm-password"  v-model="userConfirmPassword" type="password" name="add-confirm-password" id="add-confirm-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="add-confirm-password"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Password confirmation
+                              </label>
+                              <input
+                                autocomplete="add-confirm-password"
+                                v-model="userConfirmPassword"
+                                type="password"
+                                name="add-confirm-password"
+                                id="add-confirm-password"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                           </div>
                         </div>
-                        <p v-if="addUserError" class="px-6 pb-5 text-base text-red-500">{{ addUserError }}</p>
-                        <p v-if="addUserSuccess" class="px-6 pb-5 text-base text-green-500">{{ addUserSuccess }}</p>
+                        <p
+                          v-if="addUserError"
+                          class="px-6 pb-5 text-base text-red-500"
+                        >
+                          {{ addUserError }}
+                        </p>
+                        <p
+                          v-if="addUserSuccess"
+                          class="px-6 pb-5 text-base text-green-500"
+                        >
+                          {{ addUserSuccess }}
+                        </p>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                          <button
+                            type="submit"
+                            class="inline-flex justify-center py-2 px-4 border
+                            border-transparent shadow-sm text-sm font-medium rounded-md
+                            text-white bg-yellow-400 hover:bg-yellow-600
+                            focus:outline-none focus:ring-2 focus:ring-offset-2
+                            focus:ring-yellow-500"
+                          >
                             Submit
                           </button>
                         </div>
@@ -103,7 +199,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from 'vue';
 import { useStore } from 'vuex';
 
 import {
@@ -116,9 +212,9 @@ import {
   ListboxButton,
   ListboxOptions,
   ListboxOption,
-} from "@headlessui/vue";
+} from '@headlessui/vue';
 
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   components: {
@@ -136,19 +232,19 @@ export default {
   props: ['modalStatus'],
   emits: ['closeModal'],
   setup(props, { emit }) {
-    let isOpen = ref(props.modalStatus);
+    const isOpen = ref(props.modalStatus);
 
     // registerr props
-    let userPseudo = ref(null);
-    let userEmail = ref(null);
-    let userPassword = ref(null);
-    let userConfirmPassword = ref(null);
-    let userRole = ref('user');
-    let addUserError = ref(null);
-    let addUserSuccess = ref(null);
+    const userPseudo = ref(null);
+    const userEmail = ref(null);
+    const userPassword = ref(null);
+    const userConfirmPassword = ref(null);
+    const userRole = ref('user');
+    const addUserError = ref(null);
+    const addUserSuccess = ref(null);
 
     const store = useStore();
-    
+
     return {
       isOpen,
       userPseudo,
@@ -164,44 +260,46 @@ export default {
         addUserSuccess.value = null;
 
         // check that we have all we need
-        if (userEmail.value && userPseudo.value && userPassword.value && userConfirmPassword.value) {
+        if (userEmail.value
+          && userPseudo.value
+          && userPassword.value
+          && userConfirmPassword.value) {
           if (userPassword.value === userConfirmPassword.value) {
             // call api with axios on /users/post
             axios.post('http://localhost:3000/users/', {
               email: userEmail.value,
               password: userPassword.value,
               pseudonym: userPseudo.value,
-              role: userRole.value
+              role: userRole.value,
             }, {
-              headers: { 'Access-Control-Allow-Origin': '*' }
-            }).then(function (response) {
-              const data = response.data
+              headers: { 'Access-Control-Allow-Origin': '*' },
+            }).then((response) => {
+              const { data } = response;
 
               if (data) {
                 if ('err' in data) { // internal errors ?
-                  addUserError.value = data.err
+                  addUserError.value = data.err;
                 } else {
-                  addUserSuccess.value = "Added succesfully.";
+                  addUserSuccess.value = 'Added succesfully.';
 
                   // reload users
-                  store.dispatch('loadUsers')
+                  store.dispatch('loadUsers');
 
                   // close modal
                   setTimeout(() => {
                     emit('closeModal');
-                  }, 4000)
+                  }, 4000);
                 }
               }
             });
           } else {
-            addUserError.value = "Mismatch passwords.";
+            addUserError.value = 'Mismatch passwords.';
           }
         } else {
-          addUserError.value = "All fields are mandatory.";
+          addUserError.value = 'All fields are mandatory.';
         }
-
-      }
+      },
     };
   },
-}
+};
 </script>

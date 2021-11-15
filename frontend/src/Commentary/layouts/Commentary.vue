@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'CommentaryLayout'
+  name: 'CommentaryLayout',
 };
 </script>
 

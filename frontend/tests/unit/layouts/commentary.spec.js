@@ -4,11 +4,10 @@ import store from '@/Shared/store';
 import router from '@/Shared/router';
 
 describe('Commentary Layout', () => {
-
   const wrapper = shallowMount(CommentaryLayout, {
     global: {
-      plugins: [router, store]
-    }
+      plugins: [router, store],
+    },
   });
 
   it('renders commentary layout correctly', () => {

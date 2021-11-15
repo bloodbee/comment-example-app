@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import store from '../store'
+import store from '../store';
 
 // Commentary module views
 import CommentaryLayout from '@/Commentary/layouts/Commentary.vue';
@@ -29,37 +29,35 @@ const routes = [
         name: 'Channel',
         component: ChannelView,
       },
-    ]
+    ],
   },
-  
+
   // Admin module
   {
     path: '/admin',
     name: 'AdminDashboard',
     component: DashboardLayout,
     meta: { admin: true },
-    redirect: to => {
-      // the function receives the target route as the argument
-      // we return a redirect path/location here to push to users list in admin
-      return { name: 'AdminUsers' }
-    },
+    // the function receives the target route as the argument
+    // we return a redirect path/location here to push to users list in admin
+    redirect: () => ({ name: 'AdminUsers' }),
     children: [
       {
         path: 'users',
         name: 'AdminUsers',
-        component: UsersView
+        component: UsersView,
       },
       {
         path: 'channels',
         name: 'AdminChannels',
-        component: ChannelsView
+        component: ChannelsView,
       },
       {
         path: 'channel/:id',
         name: 'AdminChannel',
-        component: ChannelDetailView
+        component: ChannelDetailView,
       },
-    ]
+    ],
   },
 ];
 
@@ -70,17 +68,16 @@ const router = createRouter({
 
 // Our router middle ware to check for the metas in each route
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.admin)) {
-
+  if (to.matched.some((record) => record.meta.admin)) {
     // this route need user to be admin
     if (!store.state.user || (store.state.user && store.state.user.role === 'user')) {
-      next(from)
+      next(from);
     } else {
-      next()
+      next();
     }
   } else {
-    next() // always call next() !
+    next(); // always call next() !
   }
-})
+});
 
 export default router;
