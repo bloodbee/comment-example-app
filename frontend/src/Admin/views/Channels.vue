@@ -7,19 +7,39 @@
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-2/6">
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500
+                  uppercase tracking-wider w-2/6"
+                >
                   Comment
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/6">
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500
+                  uppercase tracking-wider w-1/6"
+                >
                   Order ID
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/6">
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500
+                  uppercase tracking-wider w-1/6"
+                >
                   Georeference ID
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/6">
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500
+                  uppercase tracking-wider w-1/6"
+                >
                   Creation
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/6">
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500
+                  uppercase tracking-wider w-1/6"
+                >
                   Actions
                 </th>
               </tr>
@@ -47,10 +67,18 @@
                         {{ new Date(channel.createdAt).toLocaleString() }}
                       </div>
                     </div>
-                  </div> 
+                  </div>
                 </td>
-                <td class="flex flex-1 items-center px-6 py-4 whitespace-nowrap text-sm font-medium text-left">
-                  <router-link :to="{ name: 'AdminChannel', params: { id: channel._id} }" class="mx-auto" title="Detail"><EyeIcon class="text-yellow-400 hover:text-yellow-500 h-6 w-6" /></router-link>
+                <td
+                  class="flex flex-1 items-center px-6 py-4 whitespace-nowrap
+                  text-sm font-medium text-left"
+                >
+                  <router-link
+                    :to="{ name: 'AdminChannel', params: { id: channel._id} }"
+                    class="mx-auto" title="Detail"
+                  >
+                    <EyeIcon class="text-yellow-400 hover:text-yellow-500 h-6 w-6" />
+                  </router-link>
                 </td>
               </tr>
             </tbody>
@@ -71,29 +99,28 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 
-import { EyeIcon } from '@heroicons/vue/outline'
+import { EyeIcon } from '@heroicons/vue/outline';
 
 export default {
   name: 'ChannelsView',
   components: {
     EyeIcon,
   },
-  props: ['admin'],
   setup() {
-    const store = useStore()
-    
+    const store = useStore();
+
     return {
-      channels: computed(() => store.state.comments)
-    }
+      channels: computed(() => store.state.comments),
+    };
   },
-}
+};
 </script>
 
 <style scoped>
-p { 
-  white-space: pre-wrap; 
+p {
+  white-space: pre-wrap;
 }
 </style>

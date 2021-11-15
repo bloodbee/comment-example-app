@@ -29,7 +29,8 @@
             leave-to="opacity-0 scale-95"
           >
             <div
-              class="inline-block w-full max-w-3xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl"
+              class="inline-block w-full max-w-3xl p-6 my-8 overflow-hidden
+              text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl"
             >
               <DialogTitle
                 as="h3"
@@ -38,8 +39,12 @@
                 Edit user
               </DialogTitle>
               <div class="mt-6 flex flex-1 flex-col sm:flex-row justify-around">
-                <div id="add" class="sm:ml-6 w-full sm:w-1/2">
-                  <h4 class="text-lg sm:text-2xl font-medium text-yellow-400">Edit {{ user._id }}</h4>
+                <div id="edit" class="sm:ml-6 w-full sm:w-1/2">
+                  <h4
+                    class="text-lg sm:text-2xl font-medium text-yellow-400"
+                  >
+                    Edit {{ user._id }}
+                  </h4>
                   <div class="mt-5 md:mt-10 md:col-span-2">
                     <form action="#" @submit.prevent="handleEditUser">
                       <div class="shadow overflow-hidden sm:rounded-md">
@@ -47,44 +52,138 @@
                           <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6">
-                              <label for="edit-pseudo" class="block text-sm font-medium text-gray-700">Pseudonym</label>
-                              <input autocomplete="edit-pseudo"  v-model="userPseudo" type="text" name="edit-pseudo" id="edit-pseudo" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="edit-pseudo"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Pseudonym
+                              </label>
+                              <input
+                                autocomplete="edit-pseudo"
+                                v-model="userPseudo"
+                                type="text"
+                                name="edit-pseudo"
+                                id="edit-pseudo"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="edit-email" class="block text-sm font-medium text-gray-700">Email</label>
-                              <input autocomplete="edit-email"  v-model="userEmail" type="email" name="edit-email" id="edit-email" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="edit-email"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Email
+                              </label>
+                              <input
+                                autocomplete="edit-email"
+                                v-model="userEmail"
+                                type="email"
+                                name="edit-email"
+                                id="edit-email"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="edit-role" class="block text-sm font-medium text-gray-700">Role</label>
+                              <label
+                                for="edit-role"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Role
+                              </label>
                               <Listbox v-model="userRole">
                                 <div class="relative mt-1">
-                                  <ListboxButton class="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">{{ userRole.replace(/^\w/, (c) => c.toUpperCase()) }}</ListboxButton>
-                                  <ListboxOptions class="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                    <ListboxOption class="text-gray-900 cursor-default select-none relative py-2 pl-10 pr-4" value="user">User</ListboxOption>
-                                    <ListboxOption class="text-gray-900 cursor-default select-none relative py-2 pl-10 pr-4" value="admin">Admin</ListboxOption>
+                                  <ListboxButton
+                                    class="relative w-full py-2 pl-3 pr-10 text-left bg-white
+                                    rounded-lg shadow-md cursor-default focus:outline-none
+                                    focus-visible:ring-2 focus-visible:ring-opacity-75
+                                    focus-visible:ring-white focus-visible:ring-offset-orange-300
+                                    focus-visible:ring-offset-2 focus-visible:border-indigo-500
+                                    sm:text-sm"
+                                  >
+                                    {{ userRole.replace(/^\w/, (c) => c.toUpperCase()) }}
+                                  </ListboxButton>
+                                  <ListboxOptions
+                                    class="absolute w-full py-1 mt-1 overflow-auto text-base
+                                    bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black
+                                    ring-opacity-5 focus:outline-none sm:text-sm"
+                                  >
+                                    <ListboxOption
+                                      class="text-gray-900 cursor-default select-none
+                                      relative py-2 pl-10 pr-4"
+                                      value="user"
+                                    >
+                                      User
+                                    </ListboxOption>
+                                    <ListboxOption
+                                      class="text-gray-900 cursor-default select-none
+                                      relative py-2 pl-10 pr-4"
+                                      value="admin"
+                                    >
+                                      Admin
+                                    </ListboxOption>
                                   </ListboxOptions>
                                 </div>
                               </Listbox>
                             </div>
 
                             <div class="col-span-6">
-                              <label for="edit-new-password" class="block text-sm font-medium text-gray-700">New password</label>
-                              <input autocomplete="edit-new-password"  v-model="userNewPassword" type="password" name="edit-new-password" id="edit-new-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="edit-new-password"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                New password
+                              </label>
+                              <input
+                                autocomplete="edit-new-password"
+                                v-model="userNewPassword"
+                                type="password"
+                                name="edit-new-password"
+                                id="edit-new-password"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="edit-confirm-password" class="block text-sm font-medium text-gray-700">Password confirmation</label>
-                              <input autocomplete="edit-confirm-password"  v-model="userConfirmPassword" type="password" name="edit-confirm-password" id="edit-confirm-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="edit-confirm-password"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Password confirmation
+                              </label>
+                              <input
+                                autocomplete="edit-confirm-password"
+                                v-model="userConfirmPassword"
+                                type="password"
+                                name="edit-confirm-password"
+                                id="edit-confirm-password"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                           </div>
                         </div>
-                        <p v-if="editUserError" class="px-6 pb-5 text-base text-red-500">{{ editUserError }}</p>
-                        <p v-if="editUserSuccess" class="px-6 pb-5 text-base text-green-500">{{ editUserSuccess }}</p>
+                        <p
+                          v-if="editUserError"
+                          class="px-6 pb-5 text-base text-red-500"
+                        >
+                          {{ editUserError }}
+                        </p>
+                        <p
+                          v-if="editUserSuccess"
+                          class="px-6 pb-5 text-base text-green-500"
+                        >
+                          {{ editUserSuccess }}
+                        </p>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                          <button
+                            type="submit"
+                            class="inline-flex justify-center py-2 px-4 border
+                            border-transparent shadow-sm text-sm font-medium rounded-md
+                            text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none
+                            focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                          >
                             Submit
                           </button>
                         </div>
@@ -103,7 +202,9 @@
 </template>
 
 <script>
-import { ref } from "vue";
+/* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
+
+import { ref } from 'vue';
 import { useStore } from 'vuex';
 
 import {
@@ -116,9 +217,9 @@ import {
   ListboxButton,
   ListboxOptions,
   ListboxOption,
-} from "@headlessui/vue";
+} from '@headlessui/vue';
 
-const axios = require('axios').default;
+import axios from 'axios';
 
 export default {
   components: {
@@ -136,19 +237,19 @@ export default {
   props: ['modalStatus', 'user'],
   emits: ['closeModal'],
   setup(props, { emit }) {
-    let isOpen = ref(props.modalStatus);
+    const isOpen = ref(props.modalStatus);
 
     // registerr props
-    let userPseudo = ref(props.user.pseudonym);
-    let userEmail = ref(props.user.email);
-    let userNewPassword = ref(null);
-    let userConfirmPassword = ref(null);
-    let userRole = ref(props.user.role);
-    let editUserError = ref(null);
-    let editUserSuccess = ref(null);
+    const userPseudo = ref(props.user.pseudonym);
+    const userEmail = ref(props.user.email);
+    const userNewPassword = ref(null);
+    const userConfirmPassword = ref(null);
+    const userRole = ref(props.user.role);
+    const editUserError = ref(null);
+    const editUserSuccess = ref(null);
 
     const store = useStore();
-    
+
     return {
       isOpen,
       userPseudo,
@@ -165,36 +266,33 @@ export default {
 
         // check that we have all we need
         if (userNewPassword.value !== userConfirmPassword.value) {
-          editUserError.value = "Mismatch passwords.";
+          editUserError.value = 'Mismatch passwords.';
           return;
         }
 
         // call api with axios on /users/post
-        axios({
-          method: 'put',
-          url: `http://localhost:3000/users/${props.user._id}`,
-          data: {
-            email: userEmail.value,
-            password: userNewPassword.value,
-            pseudonym: userPseudo.value,
-            role: userRole.value
-          },
-          headers: { 'Access-Control-Allow-Origin': '*' }
-        }).then(function (response) {
-          const data = response.data
+        axios.put(`http://localhost:3000/users/${props.user._id}`, {
+          email: userEmail.value,
+          password: userNewPassword.value,
+          pseudonym: userPseudo.value,
+          role: userRole.value,
+        }, {
+          headers: { 'Access-Control-Allow-Origin': '*' },
+        }).then((response) => {
+          const { data } = response;
 
           editUserSuccess.value = data;
 
           // reload users
-          store.dispatch('loadUsers')
+          store.dispatch('loadUsers');
 
           // close modal
           setTimeout(() => {
             emit('closeModal');
-          }, 4000)
+          }, 4000);
         });
-      }
+      },
     };
   },
-}
+};
 </script>

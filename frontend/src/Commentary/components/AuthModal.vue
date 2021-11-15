@@ -29,7 +29,9 @@
             leave-to="opacity-0 scale-95"
           >
             <div
-              class="inline-block w-full max-w-3xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl"
+              class="inline-block w-full max-w-3xl p-6 my-8 overflow-hidden
+              text-left align-middle transition-all transform bg-white
+              shadow-xl rounded-2xl"
             >
               <DialogTitle
                 as="h3"
@@ -45,23 +47,62 @@
                       <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                           <div class="grid grid-cols-6 gap-6">
-
                             <div class="col-span-6">
-                              <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
-                              <input autocomplete="login-email" v-model="loginEmail" type="email" name="login-email" id="login-email" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="login-email"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Email
+                              </label>
+                              <input
+                                autocomplete="login-email"
+                                v-model="loginEmail"
+                                type="email"
+                                name="login-email"
+                                id="login-email"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
-                              <input autocomplete="login-password"  v-model="loginPassword" type="password" name="login-password" id="login-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="login-password"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Password
+                              </label>
+                              <input
+                                autocomplete="login-password"
+                                v-model="loginPassword"
+                                type="password"
+                                name="login-password"
+                                id="login-password"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500
+                                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                           </div>
                         </div>
-                        <p v-if="loginError" class="px-6 pb-5 text-base text-red-500">{{ loginError }}</p>
-                        <p v-if="loginSuccess" class="px-6 pb-5 text-base text-green-500">{{ loginSuccess }}</p>
+                        <p
+                          v-if="loginError"
+                          class="px-6 pb-5 text-base text-red-500"
+                        >
+                          {{ loginError }}
+                        </p>
+                        <p
+                          v-if="loginSuccess"
+                          class="px-6 pb-5 text-base text-green-500"
+                        >
+                          {{ loginSuccess }}
+                        </p>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                          <button
+                            type="submit"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent
+                            shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400
+                            hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2
+                            focus:ring-yellow-500"
+                          >
                             Signin
                           </button>
                         </div>
@@ -78,31 +119,95 @@
                           <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6">
-                              <label for="register-pseudo" class="block text-sm font-medium text-gray-700">Pseudonym</label>
-                              <input autocomplete="register-pseudo"  v-model="registerPseudo" type="text" name="register-pseudo" id="register-pseudo" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="register-pseudo"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Pseudonym
+                              </label>
+                              <input
+                                autocomplete="register-pseudo"
+                                v-model="registerPseudo"
+                                type="text"
+                                name="register-pseudo"
+                                id="register-pseudo"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block
+                                w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="register-email" class="block text-sm font-medium text-gray-700">Email</label>
-                              <input autocomplete="register-email"  v-model="registerEmail" type="email" name="register-email" id="register-email" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="register-email"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Email
+                              </label>
+                              <input
+                                autocomplete="register-email"
+                                v-model="registerEmail"
+                                type="email"
+                                name="register-email"
+                                id="register-email"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block
+                                w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="register-password" class="block text-sm font-medium text-gray-700">Password</label>
-                              <input autocomplete="register-password"  v-model="registerPassword" type="password" name="register-password" id="register-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="register-password"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Password
+                              </label>
+                              <input
+                                autocomplete="register-password"
+                                v-model="registerPassword"
+                                type="password"
+                                name="register-password"
+                                id="register-password"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block
+                                w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                             <div class="col-span-6">
-                              <label for="register-confirm-password" class="block text-sm font-medium text-gray-700">Password confirmation</label>
-                              <input autocomplete="register-confirm-password"  v-model="registerConfirmPassword" type="password" name="register-confirm-password" id="register-confirm-password" class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                              <label
+                                for="register-confirm-password"
+                                class="block text-sm font-medium text-gray-700"
+                              >
+                                Password confirmation
+                              </label>
+                              <input
+                                autocomplete="register-confirm-password"
+                                v-model="registerConfirmPassword"
+                                type="password"
+                                name="register-confirm-password"
+                                id="register-confirm-password"
+                                class="mt-1 focus:ring-yellow-500 focus:border-yellow-500 block
+                                w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             </div>
 
                           </div>
                         </div>
-                        <p v-if="registerError" class="px-6 pb-5 text-base text-red-500">{{ registerError }}</p>
-                        <p v-if="registerSuccess" class="px-6 pb-5 text-base text-green-500">{{ registerSuccess }}</p>
+                        <p
+                          v-if="registerError"
+                          class="px-6 pb-5 text-base text-red-500"
+                        >
+                          {{ registerError }}
+                        </p>
+                        <p
+                          v-if="registerSuccess"
+                          class="px-6 pb-5 text-base text-green-500"
+                        >
+                          {{ registerSuccess }}
+                        </p>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                          <button
+                            type="submit"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent
+                            shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400
+                            hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2
+                            focus:ring-yellow-500"
+                          >
                             Signup
                           </button>
                         </div>
@@ -121,7 +226,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from 'vue';
 import { useStore } from 'vuex';
 
 import {
@@ -130,9 +235,9 @@ import {
   Dialog,
   DialogOverlay,
   DialogTitle,
-} from "@headlessui/vue";
+} from '@headlessui/vue';
 
-const axios = require('axios').default;
+import axios from 'axios';
 
 export default {
   components: {
@@ -146,24 +251,24 @@ export default {
   props: ['modalStatus'],
   emits: ['closeModal'],
   setup(props, { emit }) {
-    let isOpen = ref(props.modalStatus);
+    const isOpen = ref(props.modalStatus);
 
     // login props
-    let loginEmail = ref(null);
-    let loginPassword = ref(null);
-    let loginError = ref(null);
-    let loginSuccess = ref(null);
+    const loginEmail = ref(null);
+    const loginPassword = ref(null);
+    const loginError = ref(null);
+    const loginSuccess = ref(null);
 
     // registerr props
-    let registerPseudo = ref(null);
-    let registerEmail = ref(null);
-    let registerPassword = ref(null);
-    let registerConfirmPassword = ref(null);
-    let registerError = ref(null);
-    let registerSuccess = ref(null);
+    const registerPseudo = ref(null);
+    const registerEmail = ref(null);
+    const registerPassword = ref(null);
+    const registerConfirmPassword = ref(null);
+    const registerError = ref(null);
+    const registerSuccess = ref(null);
 
     const store = useStore();
-    
+
     return {
       isOpen,
       loginEmail,
@@ -184,33 +289,32 @@ export default {
         // check that we have all we need
         if (loginEmail.value && loginPassword.value) {
           // call api with axios on /users/login
-          axios({
-            method: 'post',
-            url: 'http://localhost:3000/users/login/',
-            data: {
-              email: loginEmail.value,
-              password: loginPassword.value
-            },
-            headers: { 'Access-Control-Allow-Origin': '*' }
-          }).then(function (response) {
-            const data = response.data
-            if ('err' in data) { // internal errors ?
-              loginError.value = data.err
-            } else {
-              loginSuccess.value = "Signin succesfully.";
-              // set user in store
-              store.commit('setUser', response.data.user);
+          axios.post('http://localhost:3000/users/login/', {
+            email: loginEmail.value,
+            password: loginPassword.value,
+          }, {
+            headers: { 'Access-Control-Allow-Origin': '*' },
+          }).then((response) => {
+            const { data } = response;
 
-              // close modal
-              setTimeout(() => {
-                emit('closeModal');
-              }, 4000)
+            if (data) {
+              if ('err' in data) { // internal errors ?
+                loginError.value = data.err;
+              } else {
+                loginSuccess.value = 'Signin succesfully.';
+                // set user in store
+                store.commit('setUser', response.data.user);
+
+                // close modal
+                setTimeout(() => {
+                  emit('closeModal');
+                }, 4000);
+              }
             }
           });
         } else {
-          loginError.value = "All fields are mandatory.";
+          loginError.value = 'All fields are mandatory.';
         }
-        // this.$emit('closeModal');
       },
       handleRegister() {
         // reset register errors & success
@@ -218,40 +322,41 @@ export default {
         registerSuccess.value = null;
 
         // check that we have all we need
-        if (registerEmail.value && registerPseudo.value && registerPassword.value && registerConfirmPassword.value) {
+        if (registerEmail.value
+          && registerPseudo.value
+          && registerPassword.value
+          && registerConfirmPassword.value) {
           if (registerPassword.value === registerConfirmPassword.value) {
             // call api with axios on /users/post
-            axios({
-              method: 'post',
-              url: 'http://localhost:3000/users/',
-              data: {
-                email: registerEmail.value,
-                password: registerPassword.value,
-                pseudonym: registerPseudo.value
-              },
-              headers: { 'Access-Control-Allow-Origin': '*' }
-            }).then(function (response) {
-              const data = response.data
+            axios.post('http://localhost:3000/users/', {
+              email: registerEmail.value,
+              password: registerPassword.value,
+              pseudonym: registerPseudo.value,
+            }, {
+              headers: { 'Access-Control-Allow-Origin': '*' },
+            }).then((response) => {
+              const { data } = response;
 
-              if ('err' in data) { // internal errors ?
-                registerError.value = data.err
-              } else {
-                registerSuccess.value = "Registered succesfully, you can now signin.";
-                // close modal
-                setTimeout(() => {
-                  emit('closeModal');
-                }, 4000)
+              if (data) {
+                if ('err' in data) { // internal errors ?
+                  registerError.value = data.err;
+                } else {
+                  registerSuccess.value = 'Registered succesfully, you can now signin.';
+                  // close modal
+                  setTimeout(() => {
+                    emit('closeModal');
+                  }, 4000);
+                }
               }
             });
           } else {
-            registerError.value = "Mismatch passwords.";
+            registerError.value = 'Mismatch passwords.';
           }
         } else {
-          registerError.value = "All fields are mandatory.";
+          registerError.value = 'All fields are mandatory.';
         }
-
-      }
+      },
     };
   },
-}
+};
 </script>

@@ -6,6 +6,9 @@ backend/node_modules
 frontend/dist
 frontend/dist-ssr
 
+# Coverage
+frontend/coverage
+
 # Others
 .DS_Store
 *.local
