@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 
 // Common for Commentary & Admin modules
 import store from './Shared/store';
-import './Shared/styles/index.css'
+import './Shared/styles/index.css';
 import router from './Shared/router';
 
 // Main App
