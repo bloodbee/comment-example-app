@@ -8,6 +8,7 @@ frontend/dist-ssr
 
 # Coverage
 frontend/coverage
+backend/coverage
 
 # Others
 .DS_Store
