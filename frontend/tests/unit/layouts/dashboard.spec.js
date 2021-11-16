@@ -4,6 +4,7 @@ import store from '@/Shared/store';
 import router from '@/Shared/router';
 
 describe('Dashboard Layout', () => {
+  // shallow mount the component
   const wrapper = shallowMount(DashboardLayout, {
     global: {
       plugins: [router, store],

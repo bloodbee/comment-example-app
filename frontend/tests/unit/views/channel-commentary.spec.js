@@ -39,7 +39,7 @@ describe('Commentary Channel View', () => {
   });
 
   it('renders channel correctly', async () => {
-    // mount the component
+    // shallow mount the component
     const wrapper = shallowMount(ChannelView, {
       global: {
         plugins: [router, store],
@@ -55,7 +55,7 @@ describe('Commentary Channel View', () => {
   });
 
   it('the subcomments are correctly fetched and displayed', async () => {
-    // mount the component
+    // shallow mount the component
     const wrapper = shallowMount(ChannelView, {
       global: {
         plugins: [router, store],

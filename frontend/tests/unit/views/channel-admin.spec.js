@@ -52,8 +52,9 @@ describe('Admin Channel View', () => {
       shallow: true,
     });
 
+    // go to the channel specified by id in admin
     await wrapper.vm.$router.push('/admin/channel/1');
-
+    // check it's correclty rendered
     expect(wrapper.find('#admin-channel').exists()).toBeTruthy();
   });
 
@@ -69,8 +70,9 @@ describe('Admin Channel View', () => {
       shallow: true,
     });
 
+    // go to the channel specified by id in admin
     await wrapper.vm.$router.push('/admin/channel/1');
-
+    // check it's correclty rendered
     expect(wrapper.find('#comment-subcomments').exists()).toBeTruthy();
   });
 });

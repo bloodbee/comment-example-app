@@ -44,36 +44,42 @@ describe('Admin Users View', () => {
     shallow: true,
   });
 
-  it('renders users correctly', async () => {
-    expect(wrapper.vm.users).toHaveLength(3);
+  describe('Initialisation', () => {
+    it('renders users correctly', async () => {
+      expect(wrapper.vm.users).toHaveLength(3);
+    });
+
+    it('check initial datas', () => {
+      expect(wrapper.vm.isAddUserModalOpen).toBeFalsy();
+      expect(wrapper.vm.isEditUserModalOpen).toBeFalsy();
+      expect(wrapper.vm.userEditing).toBeNull();
+      expect(wrapper.vm.admin).toHaveProperty('_id', '3');
+    });
   });
 
-  it('check initial datas', () => {
-    expect(wrapper.vm.isAddUserModalOpen).toBeFalsy();
-    expect(wrapper.vm.isEditUserModalOpen).toBeFalsy();
-    expect(wrapper.vm.userEditing).toBeNull();
-    expect(wrapper.vm.admin).toHaveProperty('_id', '3');
+  describe('User add modal', () => {
+    it('check open userAddModal', () => {
+      wrapper.vm.openAddUserModal();
+      expect(wrapper.vm.isAddUserModalOpen).toBeTruthy();
+    });
+
+    it('check close userAddModal', () => {
+      wrapper.vm.closeAddUserModal();
+      expect(wrapper.vm.isAddUserModalOpen).toBeFalsy();
+    });
   });
 
-  it('check open userAddModal', () => {
-    wrapper.vm.openAddUserModal();
-    expect(wrapper.vm.isAddUserModalOpen).toBeTruthy();
-  });
+  describe('User edit modal', () => {
+    it('check open userEditModal', () => {
+      wrapper.vm.openEditUserModal(wrapper.vm.users[0]);
+      expect(wrapper.vm.isEditUserModalOpen).toBeTruthy();
+      expect(wrapper.vm.userEditing).toHaveProperty('_id', '1');
+    });
 
-  it('check close userAddModal', () => {
-    wrapper.vm.closeAddUserModal();
-    expect(wrapper.vm.isAddUserModalOpen).toBeFalsy();
-  });
-
-  it('check open userEditModal', () => {
-    wrapper.vm.openEditUserModal(wrapper.vm.users[0]);
-    expect(wrapper.vm.isEditUserModalOpen).toBeTruthy();
-    expect(wrapper.vm.userEditing).toHaveProperty('_id', '1');
-  });
-
-  it('check close userEditModal', () => {
-    wrapper.vm.closeEditUserModal();
-    expect(wrapper.vm.isEditUserModalOpen).toBeFalsy();
-    expect(wrapper.vm.userEditing).toBeNull();
+    it('check close userEditModal', () => {
+      wrapper.vm.closeEditUserModal();
+      expect(wrapper.vm.isEditUserModalOpen).toBeFalsy();
+      expect(wrapper.vm.userEditing).toBeNull();
+    });
   });
 });

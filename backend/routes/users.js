@@ -45,10 +45,10 @@ router.get('/:id', function(req, res, next) {
   if (!req.params.id) res.json({ err: 'Please provide an id param.' });
   else {
     User.findById(req.params.id, (err, user) => {
-      if (err) res.json({ err: err })
+      if (err) res.json({ err: err });
       else {
         if (user) {
-          res.json({ user: user })
+          res.json({ user: user });
         } else {
           res.json({ err: 'No user found with this id.' });
         }
@@ -89,33 +89,33 @@ router.post('/', function(req, res, next) {
         res.json({ err: 'This user already exists.' });
       }
     });
-    
   }
 });
 
 /* PUT update user specified with id */
 router.put('/:id', async function(req, res, next) {
-  if (!req.params.id) res.json({ err: 'Please provide an id param.' })
+  if (!req.params.id) res.json({ err: 'Please provide an id param.' });
   else {
+    // format datas
     const datas = {}
-    if (req.body.email) datas.email = req.body.email
-    if (req.body.pseudonym) datas.pseudonym = req.body.pseudonym
-    if (req.body.password) datas.hashedPassword = await bcrypt.hash(req.body.password, saltRounds)
-    if (req.body.role) datas.role = req.body.role
+    if (req.body.email) datas.email = req.body.email;
+    if (req.body.pseudonym) datas.pseudonym = req.body.pseudonym;
+    if (req.body.password) datas.hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+    if (req.body.role) datas.role = req.body.role;
 
-    await User.findByIdAndUpdate(req.params.id, datas)
+    await User.findByIdAndUpdate(req.params.id, datas);
 
-    res.send(`User ${req.params.id} updated succesfully.`)
+    res.send(`User ${req.params.id} updated succesfully.`);
   }
 });
 
 /* DELETE delete user specified with id */
 router.delete('/:id', async function(req, res, next) {
-  if (!req.params.id) res.json({ err: 'Please provide an id param.' })
+  if (!req.params.id) res.json({ err: 'Please provide an id param.' });
   else {
-    await User.findByIdAndDelete(req.params.id)
+    await User.findByIdAndDelete(req.params.id);
 
-    res.send(`User ${req.params.id} deleted succesfully.`)
+    res.send(`User ${req.params.id} deleted succesfully.`);
   }
 });
 

@@ -6,21 +6,41 @@ import createPersistedState from 'vuex-persistedstate';
 import axios from 'axios';
 
 export const mutations = {
+  /**
+   * @param {Object} state
+   * @param {Object} user
+   */
   setUser(state, user) {
     state.user = user;
   },
+  /**
+   * @param {Object} state
+   * @param {Array} users
+   */
   setUsers(state, users) {
     state.users = users;
   },
+  /**
+   * @param {Object} state
+   * @param {Array} comments
+   */
   setComments(state, comments) {
     state.comments = comments;
   },
+  /**
+   * @param {Object} state
+   * @param {Object} comment
+   */
   addComment(state, comment) {
     state.comments.push(comment);
   },
 };
 
 export const actions = {
+  /**
+   * Make an API call to get all the users stored in our database
+   * @param {Object} param0 Commit and state from store to use
+   */
   loadUsers({ commit, state }) {
     // save the comments currently in store
     const oldUsers = [...state.users];
@@ -43,6 +63,11 @@ export const actions = {
       console.log('err', err);
     });
   },
+  /**
+   * Remove an user from database with an API call
+   * @param {Object} param0 State to reuse
+   * @param {Object} payload User id to delete
+   */
   deleteUser({ state }, payload) {
     const { id } = payload;
 
@@ -57,6 +82,10 @@ export const actions = {
       console.log('err', err);
     });
   },
+  /**
+   * Make an API call to get all the comments stored in our database
+   * @param {Object} param0 Commit and state from store to use
+   */
   loadComments({ commit, state }) {
     // save the comments currently in store
     const oldComments = [...state.comments];
@@ -79,6 +108,11 @@ export const actions = {
       console.log('err', err);
     });
   },
+  /**
+   * Delete a comment and all subcomments georeferenced in database
+   * @param {Object} param0 Dispatch action to use
+   * @param {Object} payload Comment ID to delete
+   */
   deleteChannel({ dispatch }, payload) {
     const { id } = payload;
 
@@ -95,6 +129,7 @@ export const actions = {
 };
 
 export default createStore({
+  // our initial state
   state: {
     user: null,
     users: [],
@@ -102,5 +137,5 @@ export default createStore({
   },
   mutations,
   actions,
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState()], // persist state
 });
