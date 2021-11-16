@@ -1,6 +1,7 @@
 /**
  * Init DB mongo with mongoose
  */
+require('dotenv').config({path: '.env'});
 
 const mongoose = require('mongoose');
 const User = require('./models/user');
@@ -28,9 +29,12 @@ async function generateUsers() {
 }
 
 mongoose
-.connect(`mongodb://localhost:27017/commentary`, {useNewUrlParser: true, useUnifiedTopology: true})
+.connect(
+  `mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+)
 .then(async () => {
-  console.log('MongoDB connected on mongodb://localhost:27017/commentary');
+  console.log(`MongoDB connected on mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`);
   await generateUsers();
   console.log('Done db initialisation');
 

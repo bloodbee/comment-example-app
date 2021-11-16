@@ -10,13 +10,14 @@ const commentsRouter = require('./routes/comments');
 
 const app = express();
 
+require('dotenv').config({path: '.env'});
 
 mongoose
 .connect(
-  `mongodb://localhost:27017/commentary`,
+  `mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`,
   {useNewUrlParser: true, useUnifiedTopology: true}
   )
-  .then(() => console.log('MongoDB connected on mongodb://localhost:27017/commentary'))
+  .then(() => console.log(`MongoDB connected on mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`))
   .catch(err => console.log(err));
   
 app.use(helmet());

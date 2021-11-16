@@ -1,12 +1,22 @@
 <template>
   <div class="flex flex-1 flex-col px-4 sm:px-20 my-10" id="home">
     <CommentFormComponent v-if="user" />
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10" id="comments">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10"
+      id="comments"
+      v-if="comments.length > 0"
+    >
       <CommentComponent
         v-for="comment in comments"
         :key="comment._id"
         :comment="comment"
       ></CommentComponent>
+    </div>
+    <div
+      v-if="!user && comments.length === 0"
+      class="font-bold text-2xl text-center w-full"
+    >
+      There are no comments. Sign in to start.
     </div>
   </div>
 
