@@ -14,11 +14,12 @@ Clone the repository
 git clone git@github.com:bloodbee/commentary.git
 ```
 
-Go to backend, install dependencies and run it
+Go to backend, install dependencies, run initDb script and run express server
 ```bash
 cd commentary/backend
 npm install
-DEBUG=commentary:* npm start
+npm run init:db # initialize database
+DEBUG=commentary:* npm start # run express server
 ```
 
 Go to frontend, install dependencies and run it
@@ -27,6 +28,10 @@ cd commentary/frontend
 npm install
 npm run serve
 ```
+
+You can now log in with two users :
+- Admin : admin@email.com / adminpassword
+- Basic : user@email.com / userpassword
 
 ## Testing
 You can launch the test suite for the backend
