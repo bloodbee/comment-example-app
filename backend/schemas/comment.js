@@ -5,8 +5,7 @@ let commentSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'User' },
   orderId: String,
   georeferenceId: { type: Schema.Types.ObjectId, ref: 'comment' },
-  text: String,
-  position: Number
+  text: String
 }, {
   collection: 'comments',
   timestamps: true

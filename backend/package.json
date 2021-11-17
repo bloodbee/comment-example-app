@@ -1,20 +1,26 @@
 {
-  "name": "comment-example",
+  "name": "commentary",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "jest --verbose --silent",
+    "test:coverage": "jest --silent --coverage",
+    "init:db": "node initDb.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
     "express": "~4.16.1",
     "helmet": "^4.6.0",
     "mongoose": "^6.0.12",
     "morgan": "~1.9.1"
   },
   "devDependencies": {
-    "jest": "^27.3.1"
+    "@shelf/jest-mongodb": "^2.1.0",
+    "jest": "^27.3.1",
+    "supertest": "^6.1.6"
   }
 }
