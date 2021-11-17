@@ -1,7 +1,7 @@
 <template>
   <div
     class="comment grid-item flex flex-1 flex-col justify-between
-    relative mb-0 border border-yellow-400 rounded-lg p-1
+    relative mb-0 border border-yellow-400 rounded-lg p-1 pt-2 pb-2
     shadow overflow-hidden"
   >
     <div class="group h-4/5">
