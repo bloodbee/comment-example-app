@@ -1,6 +1,6 @@
 # Commentary
 
-An app writing in VueJS 3, MongoDB and ExpressJS.
+An app written in VueJS 3, MongoDB and ExpressJS.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Go to backend, install dependencies, run initDb script and run express server
 ```bash
 cd commentary/backend
 npm install
-npm run init:db # initialize database
+npm run init:db # initialize database - do only once
 DEBUG=commentary:* npm start # run express server
 ```
 
@@ -44,7 +44,8 @@ npm run test:coverage
 ```
 
 You can launch the test suite for the frontend
-PS : You should have the backend running to allow all the tests to pass.
+
+**PS : You should have the backend running to allow all the tests to pass.**
 ```bash
 cd commentary/frontend
 # unit tests
