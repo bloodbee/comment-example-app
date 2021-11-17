@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "jest",
-    "test:coverage": "jest --verbose --coverage",
+    "test": "jest --verbose --silent",
+    "test:coverage": "jest --silent --coverage",
     "init:db": "node initDb.js"
   },
   "dependencies": {
