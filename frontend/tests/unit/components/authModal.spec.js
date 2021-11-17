@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import AuthModalComponent from '@/Commentary/components/AuthModal.vue';
+import AuthModalComponent from '@/Shared/components/AuthModal.vue';
 import store from '@/Shared/store';
 import router from '@/Shared/router';
 

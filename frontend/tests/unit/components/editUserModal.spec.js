@@ -16,6 +16,11 @@ jest.mock('axios', () => ({
 }));
 
 describe('EditUserModal Component', () => {
+  beforeAll(async () => {
+    // After this line, router is ready
+    await router.isReady();
+  });
+
   // shallow mount the component
   const wrapper = shallowMount(EditUserModalComponent, {
     props: {

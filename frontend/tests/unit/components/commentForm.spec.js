@@ -1,7 +1,6 @@
 import { shallowMount, flushPromises } from '@vue/test-utils';
 import CommentFormComponent from '@/Commentary/components/CommentForm.vue';
 import store from '@/Shared/store';
-import router from '@/Shared/router';
 
 let url = '';
 let body = {}; // disable-no-unused-vars
@@ -22,7 +21,7 @@ describe('CommentForm Component', () => {
       georeferenceId: '1',
     },
     global: {
-      plugins: [router, store],
+      plugins: [store],
     },
   });
 

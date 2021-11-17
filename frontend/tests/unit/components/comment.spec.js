@@ -4,6 +4,11 @@ import store from '@/Shared/store';
 import router from '@/Shared/router';
 
 describe('Comment Component', () => {
+  beforeAll(async () => {
+    // After this line, router is ready
+    await router.isReady();
+  });
+
   // shallow mount the component
   const wrapper = shallowMount(CommentComponent, {
     props: {

@@ -3,7 +3,7 @@ import NavComponent from '@/Shared/components/Nav.vue';
 import store from '@/Shared/store';
 import router from '@/Shared/router';
 
-describe('Nav Component', () => {
+describe('Nav Component', () => {  
   // shallow mount the component
   const wrapper = shallowMount(NavComponent, {
     global: {
@@ -48,11 +48,13 @@ describe('Nav Component', () => {
       expect(wrapper.vm.user).toBeNull();
     });
 
-    it('check logout function from admin', () => {
+    it('check logout function from admin', async () => {
       // set user to any random value
       store.commit('setUser', { role: 'admin', pseudonym: 'John Doe' });
 
       router.push('/admin');
+      // After this line, router is ready
+      await router.isReady();
 
       // call logout and check user computed property
       wrapper.vm.logout();

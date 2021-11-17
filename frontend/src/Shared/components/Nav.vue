@@ -141,7 +141,7 @@ import {
 } from '@heroicons/vue/outline';
 import baseMixin from '@/Shared/mixins/base';
 
-import AuthModalComponent from '@/Commentary/components/AuthModal.vue';
+import AuthModalComponent from '@/Shared/components/AuthModal.vue';
 
 export default {
   name: 'NavComponent',

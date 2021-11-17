@@ -48,6 +48,9 @@ describe('Admin Channel View', () => {
     const wrapper = mount(ChannelDetailView, {
       global: {
         plugins: [store],
+        mocks: {
+          // No need for the mocks
+        },
       },
       shallow: true,
     });

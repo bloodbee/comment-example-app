@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import UsersView from '@/Admin/views/Users.vue';
 import store from '@/Shared/store';
-import router from '@/Shared/router';
 
 describe('Admin Users View', () => {
   beforeAll(async () => {
@@ -39,7 +38,7 @@ describe('Admin Users View', () => {
       },
     },
     global: {
-      plugins: [router, store],
+      plugins: [store],
     },
     shallow: true,
   });

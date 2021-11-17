@@ -119,9 +119,9 @@ export const actions = {
     // make api call to delete the channel specified by id
     axios.delete(`http://localhost:3000/comments/${id}`, {
       headers: { 'Access-Control-Allow-Origin': '*' },
-    }).then(() => {
+    }).then(async () => {
       // reload comments data
-      dispatch('loadComments');
+      await dispatch('loadComments');
     }).catch((err) => {
       console.log('err', err);
     });

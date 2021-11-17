@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import HomeView from '@/Commentary/views/Home.vue';
 import store from '@/Shared/store';
-import router from '@/Shared/router';
 
 describe('Commentary Home View', () => {
   beforeAll(async () => {
@@ -38,7 +37,7 @@ describe('Commentary Home View', () => {
     // mount the component
     const wrapper = shallowMount(HomeView, {
       global: {
-        plugins: [router, store],
+        plugins: [store],
       },
       shallow: true,
     });

@@ -44,6 +44,7 @@ npm run test:coverage
 ```
 
 You can launch the test suite for the frontend
+PS : You should have the backend running to allow all the tests to pass.
 ```bash
 cd commentary/frontend
 # unit tests
